@@ -13,10 +13,19 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
   },
+  module: {
+    rules: [
+      {
+        test: /\.pug$/,
+        loader: 'pug-loader'
+      }
+    ]
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Memo-To-Trello'
+      title: 'Memo-To-Trello',
+      template: 'src/index.pug'
     })
   ]
 }
