@@ -26,6 +26,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Memo-To-Trello',
       template: 'src/index.pug'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Modal',
+      template: 'src/modal.pug',
+      filename: 'modal.html'
     })
   ]
 }
