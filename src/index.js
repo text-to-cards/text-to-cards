@@ -9,20 +9,29 @@ var onBtnClick = function (t, opts) {
         url: './modal.html'
       })
     } else {
+      console.log(t.getContext())
       return t.popup({
         type: 'confirm',
-        title: 'Sign-in with Trello',
+        title: 'Authorize with Trello',
         message: 'Authorize Memo-to-Trello with your Trello account',
         confirmText: 'Authorize',
-        onConfirm: function(t, opts) {
-          return t.modal({
-            title: 'Memo-to-Trello',
-            fullscreen: true,
-            url: './modal.html'
-          })
+        // onConfirm: function(t, opts) {
+        //   t.getRestApi()
+        //     .authorize({scope: 'read, write'})
+        //     .then(t => {
+        //       console.log(t);
+        //       return t.modal({
+        //         title: 'Memo-to-Trello',
+        //         fullscreen: true,
+        //         url: './modal.html'
+        //       })
+        //   }, false)
         }
       })
     }
+  })
+  .catch(e => {
+    console.error(e)
   })
 };
 
