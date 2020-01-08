@@ -10,10 +10,10 @@ var onBtnClick = function (t, opts) {
         url: './modal.html'
       })
     } else {
-      return t.modal({
+      return t.popup({
         title: 'Sign-in with Trello',
-        fullscreen: false,
-        url: './login.html'
+        url: './login.html',
+        height: 300
       })
     }
   })
