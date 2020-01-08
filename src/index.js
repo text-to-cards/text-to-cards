@@ -9,30 +9,24 @@ var onBtnClick = function (t, opts) {
           url: './modal.html'
         })
       } else {
-        return t.popup({
-          type: 'confirm',
-          title: 'Authorize with Trello',
-          message: '',
-          confirmText: 'Authorize',
-          onConfirm: function(t, opts) {
-            t.getRestApi()
-              .authorize({ scope: 'read,write' })
-              .then(t => {
-                return t.modal({
-                  title: 'Memo-to-Trello',
-                  fullscreen: true,
-                  url: './modal.html'
-                })
-            }, false)
-          }
-        })
-        .catch(TrelloPowerUp.restApiError.AuthDeniedError, e => {
-          console.log('Authorization cancelled')
-        })
-        .catch(e => {
-          console.error(e)
-        })
+        return t.getRestApi()
+          .authorize({ scope: 'read,write', redirectUrl: '' })
+          .then(t => {
+            console.log(t)
+
+            // return t.modal({
+            //   title: 'Memo-to-Trello',
+            //   fullscreen: true,
+            //   url: './modal.html'
+            // })
+          })
       }
+    })
+    .catch(TrelloPowerUp.restApiError.AuthDeniedError, e => {
+      console.log('Authorization cancelled')
+    })
+    .catch(e => {
+      console.error(e)
     })
 };
 
