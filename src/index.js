@@ -1,5 +1,6 @@
 var onBtnClick = function (t, opts) {
-  t.getRestApi()
+  console.log(t.getContext())
+  return t.getRestApi()
     .isAuthorized()
     .then(function(isAuth) {
       if (isAuth) {
@@ -9,6 +10,7 @@ var onBtnClick = function (t, opts) {
           url: './modal.html'
         })
       } else {
+        console.log(t.getContext())
         return t.popup({
           type: 'confirm',
           title: 'Authorize with Trello',
@@ -44,5 +46,6 @@ window.TrelloPowerUp.initialize({
   }
 }, {
   appKey: '14d27ba2a1d4d5160e8eaab9c3cfcf2f',
-  appName: 'Memo-to-Trello'
+  appName: 'Memo-to-Trello',
+  helpfulStacks: true
 });
