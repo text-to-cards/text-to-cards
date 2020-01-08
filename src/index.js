@@ -1,5 +1,4 @@
 var onBtnClick = function (t, opts) {
-  console.log(t.getContext())
   return t.getRestApi()
     .isAuthorized()
     .then(function(isAuth) {
@@ -10,7 +9,6 @@ var onBtnClick = function (t, opts) {
           url: './modal.html'
         })
       } else {
-        console.log(t.getContext())
         return t.popup({
           type: 'confirm',
           title: 'Authorize with Trello',
@@ -18,9 +16,8 @@ var onBtnClick = function (t, opts) {
           confirmText: 'Authorize',
           onConfirm: function(t, opts) {
             t.getRestApi()
-              .authorize({scope: 'read, write'})
+              .authorize({ scope: 'read,write' })
               .then(t => {
-                console.log(t);
                 return t.modal({
                   title: 'Memo-to-Trello',
                   fullscreen: true,
@@ -29,10 +26,13 @@ var onBtnClick = function (t, opts) {
             }, false)
           }
         })
+        .catch(TrelloPowerUp.restApiError.AuthDeniedError, e => {
+          console.log('Authorization cancelled')
+        })
+        .catch(e => {
+          console.error(e)
+        })
       }
-    })
-    .catch(e => {
-      console.error(e)
     })
 };
 
@@ -46,6 +46,5 @@ window.TrelloPowerUp.initialize({
   }
 }, {
   appKey: '14d27ba2a1d4d5160e8eaab9c3cfcf2f',
-  appName: 'Memo-to-Trello',
-  helpfulStacks: true
+  appName: 'Memo-to-Trello'
 });
