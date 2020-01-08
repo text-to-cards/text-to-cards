@@ -1,7 +1,7 @@
 var onBtnClick = function (t, opts) {
   t.getRestApi()
     .isAuthorized()
-    .then(isAuth => {
+    .then(function(isAuth) {
       if (isAuth) {
         return t.modal({
           title: 'Memo-to-Trello',
@@ -9,10 +9,10 @@ var onBtnClick = function (t, opts) {
           url: './modal.html'
         })
       } else {
-        console.log(t)
         return t.popup({
           type: 'confirm',
           title: 'Authorize with Trello',
+          message: '',
           confirmText: 'Authorize',
           onConfirm: function(t, opts) {
             t.getRestApi()

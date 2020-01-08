@@ -7,7 +7,6 @@ module.exports = {
   mode: 'development',
   entry: {
     main: './src/index.js',
-    login: './src/login.js',
     modal: './src/modal.js'
   },
   devtool: 'inline-source-map',
@@ -32,12 +31,6 @@ module.exports = {
       title: 'Memo-To-Trello',
       template: 'src/index.pug',
       chunks: ['main']
-    }),
-    new HtmlWebpackPlugin({
-      title: 'Login',
-      template: 'src/login.pug',
-      filename: 'login.html',
-      chunks: ['login']
     }),
     new HtmlWebpackPlugin({
       title: 'Modal',
