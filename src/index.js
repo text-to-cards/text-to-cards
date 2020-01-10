@@ -1,5 +1,16 @@
 var onBtnClick = function (t, opts) {
   return t.getRestApi()
+    .authorize({ scope: 'read,write', callback_method: 'postMessage', response_type: 'token' })
+    .then(t => {
+      console.log(t)
+
+      // return t.modal({
+      //   title: 'Memo-to-Trello',
+      //   fullscreen: true,
+      //   url: './modal.html'
+      // })
+    })
+  return t.getRestApi()
     .isAuthorized()
     .then(function(isAuth) {
       if (isAuth) {
@@ -9,17 +20,6 @@ var onBtnClick = function (t, opts) {
           url: './modal.html'
         })
       } else {
-        return t.getRestApi()
-          .authorize({ scope: 'read,write', redirectUrl: '' })
-          .then(t => {
-            console.log(t)
-
-            // return t.modal({
-            //   title: 'Memo-to-Trello',
-            //   fullscreen: true,
-            //   url: './modal.html'
-            // })
-          })
       }
     })
     .catch(TrelloPowerUp.restApiError.AuthDeniedError, e => {
