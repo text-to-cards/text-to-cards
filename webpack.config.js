@@ -7,7 +7,8 @@ module.exports = {
   mode: 'development',
   entry: {
     main: './src/index.js',
-    modal: './src/modal.js'
+    modal: './src/modal.js',
+    login: './src/login.js'
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -37,6 +38,12 @@ module.exports = {
       template: 'src/modal.pug',
       filename: 'modal.html',
       chunks: ['modal']
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Authorize Memo-to-Trello',
+      template: 'src/login.pug',
+      filename: 'login.html',
+      chunks: ['login']
     }),
     new CopyPlugin([
       'src/main.css'

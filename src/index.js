@@ -1,7 +1,7 @@
 function showPopup(t) {
   return t.popup({
     title: 'Authorize Memo-to-Trello',
-    url: './modal.html'
+    url: './login.html'
   })
 }
 
