@@ -5,21 +5,17 @@ let t = window.TrelloPowerUp.iframe({
   appName: 'Memo-to-Trello'
 })
 
+const context = t.getContext()
+
 let vm = new Vue({
   el: '#app',
   data: {
     cards: [],
-    t: t
+    context: context
   },
   methods: {
     parseInput: function (e) {
       this.cards = parseInput(e.target.value)
-    }
-  },
-  computed: {
-    members: function () {
-      const context = this.t.getContext()
-      return this.t.board(context.board, 'members')
     }
   }
 })
