@@ -1,6 +1,35 @@
 extends base.pug
 
 block content
-    p "Extra paragraph"
-    textarea(rows=25 id='memo-text')
-    button(class='mod-primary') "I'm a button"
+    div(class='container' id='app')
+        div(class='panel')
+            h1 Memo to Trello
+            p Use these symbols to mark cards and their elements:
+            div #[strong ::card title]
+                br
+                | Everything after the #[strong ::] and before first new line is treated as the card title.
+                | Anything until a new #[strong ::] is found will be treated as the description of the card (if longer than 5 characters).
+            div #[strong @username] or #[strong @initials]
+                br
+                | Add member to the card
+            div #[strong #tag]
+                br
+                | Add tag to the card
+            div #[strong $due:]#[em date]
+                br
+                | Due date of card (date should be in YYYY-MM-DD format)
+        div(class='panel')
+            div
+                h3 Your memo
+                textarea(
+                    rows=25
+                    id='memo-text'
+                    v-on:input='parseInput'
+                    placeholder='Insert your memo here'
+                )
+        div(class='panel')
+            div
+                h3 Your cards
+                div(v-for='card in cards') {{card}}
+            div
+                button(class='mod-primary') Create cards

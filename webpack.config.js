@@ -48,5 +48,10 @@ module.exports = {
     new CopyPlugin([
       'src/main.css'
     ])
-  ]
+  ],
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  }
 }
