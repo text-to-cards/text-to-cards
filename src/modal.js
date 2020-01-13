@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import _ from 'lodash'
 
 let t = window.TrelloPowerUp.iframe({
   appKey: '14d27ba2a1d4d5160e8eaab9c3cfcf2f',
@@ -41,17 +42,17 @@ let vm = new Vue({
     }
   },
   methods: {
-    parseInput: function (e) {
+    parseInput: _.debounce(function (e) {
       this.cards = parseInput(
         e.target.value,
         this.board.members,
         this.board.labels
       )
-    },
+    }, 300),
     createCards: function () {
       if (!!this.selectedList.id) {
-        this.cards.forEach(c => {
-          // Upload cards
+        this.cards.forEach(card => {
+          console.log(card)
         })
       }
     },
