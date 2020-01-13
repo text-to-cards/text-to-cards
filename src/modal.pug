@@ -19,7 +19,8 @@ block content
             div #[strong $due:]#[em date]
                 br
                 | Due date of card (date should be in YYYY-MM-DD format)
-            div {{members}}
+            div {{ board.members }}
+            div {{ board.labels }}
         div(class='panel')
             div
                 h3 Your memo
@@ -32,6 +33,6 @@ block content
         div(class='panel')
             div
                 h3 Your cards
-                div(v-for='card in cards') {{card}}
+                div(v-for='card in cards') {{ card }}
             div
-                button(class='mod-primary') Create cards
+                button(class='mod-primary') Create {{cards.length}} cards
