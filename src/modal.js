@@ -11,7 +11,7 @@ let vm = new Vue({
     cards: [],
     board: {},
     lists: [],
-    selectedList: { name: 'Test'}
+    selectedList: {}
   },
   mounted: function() {
     return t.board('all')

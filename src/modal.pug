@@ -39,10 +39,11 @@ block content
                     div(v-for='card in cards') {{ card }}
                 div
                     label(for='listSelect') Select list
-                    select(name='listSelect' v-bind:value='selectedList')
-                        option(v-for='list in lists') {{list.name}}
-                div
-                    button(v-if='cards.length' class='mod-primary' v-on:click='createCards') {{buttonText}}
-                    button(v-else disabled) {{buttonText}}
+                    select(name='listSelect' v-model='selectedList')
+                        option(disabled value='') Please select a list
+                        option(v-for='list in lists' v-bind:value='list') {{ list.name }}
                     br
-                    small(v-if='selectedList.name') Cards will be added to the top of list #[strong {{selectedList.name}}].
+                    small(v-if='selectedList.name') Cards will be added to the top of list #[strong {{ selectedList.name }}].
+                div
+                    button(v-if='cards.length' class='mod-primary' v-on:click='createCards') {{ buttonText }}
+                    button(v-else disabled) {{ buttonText }}
