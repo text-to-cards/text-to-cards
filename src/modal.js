@@ -35,8 +35,9 @@ function parseInput(text, members, labels) {
   const cardSplitter = /:{2}/gm
   return text
     .split(cardSplitter)
-    .slice(1)
+    .slice(1) // first element is empty or non-card related
     .map((elem, index, array) => parseCard(elem.trim(), members, labels))
+    .filter(c => c.name.length)
 }
 
 function parseCard(text, members, labels) {
@@ -61,11 +62,9 @@ function parseCard(text, members, labels) {
     .filter(l => labelMatch.includes(l.name))
     .map(l => l.id)
 
-  let processedDesc = desc.replace(memberRegex, '').replace(labelRegex, '')
-
   return {
     name: name,
-    desc: desc.length > 5 ? processedDesc : '',
+    desc: desc.length > 5 ? desc : '',
     idMembers: cardMembers,
     idLabels: cardLabels,
     due: null

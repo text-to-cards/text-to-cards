@@ -1,9 +1,13 @@
-div.container {
-    display: flex;
-    margin: 20px;
+.container {
+    margin: 30px;
 }
 
-div.panel {
-    padding: 20px;
-    margin: 10px;
+.panels {
+    display: flex;
+    flex-direction: row;
+}
+
+.panel {
+    flex: 1 1 33%;
+    margin: 20px 40px 0px 0px;
 }
