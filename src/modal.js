@@ -9,7 +9,8 @@ let vm = new Vue({
   el: '#app',
   data: {
     cards: [],
-    board: {}
+    board: {},
+    list: {}
   },
   created: function() {
     return t.board('all')
@@ -20,6 +21,17 @@ let vm = new Vue({
         console.error(e)
       })
   },
+  computed: {
+    buttonText: function() {
+      if (this.cards.length === 1) {
+        return 'Create card'
+      } else if (this.cards.length > 1) {
+        return `Create ${this.cards.length} cards`
+      } else {
+        return 'Create cards'
+      }
+    }
+  },
   methods: {
     parseInput: function (e) {
       this.cards = parseInput(
@@ -27,6 +39,17 @@ let vm = new Vue({
         this.board.members,
         this.board.labels
       )
+    },
+    createCards: function () {
+      let that = this
+      this.cards
+        .map(c => {
+          c['idList'] = that.list.id
+          return c
+        })
+        .forEach(c => {
+          // Upload cards
+        })
     }
   }
 })
