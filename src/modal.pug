@@ -22,6 +22,7 @@ block content
                     p #[strong $due:]#[em date]
                     p Due date of card (date should be in YYYY-MM-DD format)
                 div {{board}}
+                div {{lists}}
             div(class='panel')
                 div
                     h3 Your memo
@@ -38,8 +39,8 @@ block content
                     div(v-for='card in cards') {{ card }}
                 div
                     label(for='listSelect') Select list
-                    select(name='listSelect' v-bind:value='list')
-                        option(v-for='list in board.lists') {{list.name}}
+                    select(name='listSelect' v-bind:value='selectedList')
+                        option(v-for='list in lists') {{list.name}}
                 div
                     button(v-if='cards.length' class='mod-primary' v-on:click='createCards') {{buttonText}}
                     button(v-else disabled) {{buttonText}}

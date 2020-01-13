@@ -10,12 +10,17 @@ let vm = new Vue({
   data: {
     cards: [],
     board: {},
-    list: {}
+    lists: [],
+    selectedList: {}
   },
   created: function() {
     return t.board('all')
       .then(board => {
         this.board = board
+        return t.lists('all')
+      })
+      .then(lists => {
+        this.lists = lists
       })
       .catch(e => {
         console.error(e)
@@ -72,7 +77,7 @@ function parseCard(text, members, labels) {
   let desc = newLineIndex === -1 ? '' : text.substring(newLineIndex).trim()
 
   const memberRegex = new RegExp('\s|\n@([A-Z]{2}|[a-z]*)', 'g')
-  let memMatch = Array.from(desc.matchAll(memberRegex), m => m[0])
+  let memMatch = Array.from(desc.matchAll(memberRegex), m => m[1])
   let cardMembers = members
     .filter(m => {
       return memMatch.includes(m.username) || memMatch.includes(m.initials)
@@ -80,7 +85,7 @@ function parseCard(text, members, labels) {
     .map(m => m.id)
 
   const labelRegex = new RegExp('\s|\n#([^\s]*)', 'g')
-  let labelMatch = Array.from(desc.matchAll(labelRegex), m => m[0])
+  let labelMatch = Array.from(desc.matchAll(labelRegex), m => m[1])
   let cardLabels = labels
     .filter(l => labelMatch.includes(l.name))
     .map(l => l.id)
