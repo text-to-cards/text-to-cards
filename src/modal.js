@@ -11,7 +11,7 @@ let vm = new Vue({
     cards: [],
     board: {},
     lists: [],
-    selectedList: {}
+    selectedList: {},
   },
   mounted: function() {
     return t.board('all')
@@ -35,6 +35,9 @@ let vm = new Vue({
       } else {
         return 'Create cards'
       }
+    },
+    buttonDisabled: function () {
+      return !((this.selectedList.id || false) && !!this.cards.length)
     }
   },
   methods: {
@@ -46,15 +49,18 @@ let vm = new Vue({
       )
     },
     createCards: function () {
-      let that = this
-      this.cards
-        .map(c => {
-          c['idList'] = that.list.id
-          return c
-        })
-        .forEach(c => {
+      if (!!this.selectedList.id) {
+        this.cards.forEach(c => {
           // Upload cards
         })
+      }
+    },
+  },
+  watch: {
+    selectedList: function(newList) {
+      this.cards.forEach(c => {
+        c.idList = newList.id
+      })
     }
   }
 })
