@@ -36,7 +36,7 @@ block content
                 div
                     h3 Preview
                     div(v-if='cards.length === 0') #[small There are no cards in the memo.]
-                    trello-card(:card='card' v-for='card in cards')
+                    div(class='card-preview')
                 div
                     label(for='listSelect') Select list
                     select(name='listSelect' v-model='selectedList')
