@@ -7,20 +7,21 @@ block content
             div(class='panel')
                 h3 Hint
                 p Use these symbols to mark cards and their elements:
-                div #[strong ::card title]
-                    br
-                    | Everything after the double colon and before first new line is treated as the card title.
-                    | Anything until a new #[em ::card title] (or the end of text)
-                    | will be treated as the description of the card (if longer than 5 characters).
-                div #[strong @username] or #[strong @initials]
-                    br
-                    | Add member to the card
-                div #[strong #tag]
-                    br
-                    | Add tag to the card
-                div #[strong $due:]#[em date]
-                    br
-                    | Due date of card (date should be in YYYY-MM-DD format)
+                div
+                    p #[strong ::card title]
+
+                    p Everything in the same line after the double colon will be treated as the card title.
+                    p Anything before a new #[em ::card title] or the end of text will be treated as the description of the card, if longer than 5 characters.
+                div
+                    p #[strong @username] or #[strong @initials]
+                    p Add a member to the card
+                div
+                    p #[strong #tag]
+                    p Add tag to the card
+                div
+                    p #[strong $due:]#[em date]
+                    p Due date of card (date should be in YYYY-MM-DD format)
+                div {{board}}
             div(class='panel')
                 div
                     h3 Your memo
