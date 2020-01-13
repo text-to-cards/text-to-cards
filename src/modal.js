@@ -17,7 +17,7 @@ let vm = new Vue({
     return t.board('all')
       .then(board => {
         this.board = board
-        return t.lists('all')
+        return t.lists('id', 'name')
       })
       .then(lists => {
         this.lists = lists
