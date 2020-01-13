@@ -21,8 +21,7 @@ block content
                 div
                     p #[strong $due:]#[em date]
                     p Due date of card (date should be in YYYY-MM-DD format)
-                div {{board}}
-                div {{lists}}
+
             div(class='panel')
                 div
                     h3 Your memo
@@ -32,6 +31,7 @@ block content
                         v-on:input='parseInput'
                         placeholder='Insert your memo here'
                     )
+
             div(class='panel')
                 div
                     h3 Preview
@@ -43,7 +43,7 @@ block content
                         option(disabled value='') Please select a list
                         option(v-for='list in lists' v-bind:value='list') {{ list.name }}
                     br
-                    small(v-if='selectedList.name') Cards will be added to the top of list #[strong {{ selectedList.name }}].
+                    small(v-if='selectedList.name') Cards will be added to the top of #[strong {{ selectedList.name }}].
                     small(v-else) Select the list where you want to add the cards.
                 div
                     button(

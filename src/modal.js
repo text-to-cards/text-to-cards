@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import _ from 'lodash'
+import axios from 'axios'
+
+const appKey = '14d27ba2a1d4d5160e8eaab9c3cfcf2f'
 
 let t = window.TrelloPowerUp.iframe({
-  appKey: '14d27ba2a1d4d5160e8eaab9c3cfcf2f',
+  appKey: appKey,
   appName: 'Memo-to-Trello',
 })
 
@@ -49,12 +52,22 @@ let vm = new Vue({
         this.board.labels
       )
     }, 300),
-    createCards: function () {
-      if (!!this.selectedList.id) {
-        this.cards.forEach(card => {
-          console.log(card)
+    createCards: function (e) {
+      let cards = this.cards
+      return t.getRestApi()
+        .getToken()
+        .then(token => {
+          return Promise.all(cards.map(card => {
+            return axios.post('https://api.trello.com/1/cards', {
+              ...card,
+              token: token,
+              key: appKey,
+              pos: 'top'
+            })
+          }))
         })
-      }
+        .then(response => console.log(response))
+        .catch(e => console.error(e))
     },
   },
   watch: {
