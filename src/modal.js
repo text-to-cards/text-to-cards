@@ -31,18 +31,18 @@ let vm = new Vue({
   }
 })
 
-function parseInput(text, members) {
+function parseInput(text, members, labels) {
   const cardSplitter = /:{2}/gm
   return text
     .split(cardSplitter)
-    .map((elem, index, array) => {
-      if (index > 0) { // first elem will be either empty or non-card content
-        return parseCard(elem.trim(), members, labels)
-      }
-    })
+    .slice(1)
+    .map((elem, index, array) => parseCard(elem.trim(), members, labels))
 }
 
 function parseCard(text, members, labels) {
+  members = members || []
+  labels = labels || []
+
   let newLineIndex = text.indexOf('\n')
   let name = newLineIndex === -1 ? text : text.substring(0,newLineIndex).trim()
   let desc = newLineIndex === -1 ? '' : text.substring(newLineIndex).trim()
