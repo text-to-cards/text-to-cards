@@ -13,7 +13,7 @@ let vm = new Vue({
     lists: [],
     selectedList: {}
   },
-  created: function() {
+  mounted: function() {
     return t.board('all')
       .then(board => {
         this.board = board
