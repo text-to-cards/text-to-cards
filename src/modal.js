@@ -62,24 +62,6 @@ let vm = new Vue({
       this.cards.forEach(c => {
         c.idList = newList.id
       })
-    },
-    cards: function (newCards) {
-      const cardContainer = document.getElementsByClassName('card-preview')[0]
-      cardContainer.innerHTML = ''
-      newCards.forEach(card => {
-        const cardEl = document.createElement('trello-card')
-
-        card.labels = this.board.labels.filter(l => {
-          return card.labels.includes(l.id)
-        })
-        card.members = this.board.members.filter(m => {
-          return card.members.includes(m.id)
-        })
-
-        cardEl.card = card
-        cardEl.style = 'margin-top: 10px;'
-        cardContainer.appendChild(cardEl)
-      })
     }
   }
 })
@@ -120,7 +102,6 @@ function parseCard(text, members, labels) {
     desc: desc.length > 5 ? desc : '',
     idMembers: cardMembers,
     idLabels: cardLabels,
-    due: null,
-    url: 'https://trello.com/c/xxxxxxxx/yyyyyyy'
+    due: null
   }
 }
