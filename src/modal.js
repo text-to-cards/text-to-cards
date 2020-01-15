@@ -53,6 +53,7 @@ let vm = new Vue({
       )
     }, 300),
     createCards: function (e) {
+      let that = this
       let cards = this.cards
       return t.getRestApi()
         .getToken()
@@ -66,7 +67,9 @@ let vm = new Vue({
             })
           }))
         })
-        .then(response => console.log(response))
+        .then(response => {
+          t.closeModal()
+        })
         .catch(e => console.error(e))
     },
   },
