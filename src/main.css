@@ -5,9 +5,14 @@
 .panels {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .panel {
     flex: 1 1 33%;
     margin: 20px 40px 0px 0px;
+}
+
+.authorize-button {
+    margin: auto;
 }
