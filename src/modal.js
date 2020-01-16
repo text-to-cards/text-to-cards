@@ -55,7 +55,7 @@ t.render(function () {
         )
       }, 300),
       createCards: function (e) {
-        let that = this
+        let self = this
         let cards = this.cards
         return t.getRestApi()
           .getToken()
@@ -70,7 +70,7 @@ t.render(function () {
             }))
           })
           .then(response => {
-            that.message = 'Success!'
+            self.message = 'Success!'
             setTimeout(function () {
               t.closeModal()
             }, 1000)
