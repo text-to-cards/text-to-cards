@@ -1,7 +1,7 @@
 <template lang='pug'>
     div.card-container
         div.labels(v-if='!!card.labels.length' v-for='label in card.labels')
-            span.label(style='background: {label.color_hex}') {{ label }}
+            span.label(v-bind:style='{ background: label.color_hex}') {{ label.name }}
         div.title {{ card.name }}
         div.members(v-if='!!card.members.length') Members:
             span(v-for='member in card.members') @{{ member.username }}
@@ -17,7 +17,6 @@ export default {
 <style scoped>
     .card-container {
         width: 256px;
-        height: 76px;
         display: block;
         border-radius: 3px;
         background: #fff;
@@ -32,16 +31,18 @@ export default {
 
     .title {
         color: #172b4d;
+        margin: 2px 0px 2px 0px;
     }
 
     .label {
         height: 16px;
         line-height: 16px;
-        padding: 4px 6px;
+        padding: 0px 8px;
         max-width: 198px;
         font-size: 12px;
         font-weight: 700;
         margin: 0 4px 4px 0;
         color: #fff;
+        border-radius: 4px;
     }
 </style>
