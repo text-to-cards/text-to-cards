@@ -17,6 +17,7 @@ t.render(function () {
       board: {},
       lists: [],
       selectedList: {},
+      message: null
     },
     mounted: function() {
       return t.board('all')
@@ -69,11 +70,10 @@ t.render(function () {
             }))
           })
           .then(response => {
-            t.popup({
-              url: './confirm.html',
-              args: { cards: cards, list: that.selectedList.name }
-            })
-            t.closeModal()
+            that.message = 'Success!'
+            setTimeout(function () {
+              t.closeModal()
+            }, 1000)
           })
           .catch(e => console.error(e))
       },
