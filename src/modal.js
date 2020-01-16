@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import _ from 'lodash'
 import axios from 'axios'
+import Card from './Card.vue'
 
 const appKey = '14d27ba2a1d4d5160e8eaab9c3cfcf2f'
 
@@ -8,6 +9,8 @@ let t = window.TrelloPowerUp.iframe({
   appKey: appKey,
   appName: 'Memo-to-Trello',
 })
+
+let colors = window.TrelloPowerUp.util.colors
 
 let vm = new Vue({
   el: '#app',
@@ -17,6 +20,9 @@ let vm = new Vue({
     lists: [],
     selectedList: {},
     message: null
+  },
+  components: {
+    'trello-card': Card
   },
   mounted: function() {
     return t.board('all')
@@ -55,7 +61,15 @@ let vm = new Vue({
     }, 300),
     createCards: function (e) {
       let self = this
-      let cards = this.cards
+      let cards = this.cards.map(card => {
+        return {
+          name: card.name,
+          desc: card.desc,
+          idMembers: card.members.map(m => m.id),
+          idLabels: card.labels.map(l => l.id),
+          due: card.due
+        }
+      })
       return t.getRestApi()
         .getToken()
         .then(token => {
@@ -105,23 +119,24 @@ function parseCard(text, members, labels) {
 
   const memberRegex = new RegExp('@([A-Z]{2}|[a-z 0-9 _]*)', 'g')
   let memMatch = Array.from(desc.matchAll(memberRegex), m => m[1])
-  let cardMembers = members
-    .filter(m => {
+  let cardMembers = members.filter(m => {
       return memMatch.includes(m.username) || memMatch.includes(m.initials)
     })
-    .map(m => m.id)
 
   const labelRegex = new RegExp('#(\\w+)', 'g')
   let labelMatch = Array.from(desc.matchAll(labelRegex), m => m[1])
   let cardLabels = labels
     .filter(l => labelMatch.includes(l.name))
-    .map(l => l.id)
+    .map(l => {
+      l.color_hex = colors.getHexString(l.color)
+      return l
+    })
 
   return {
     name: name,
     desc: desc.length > 5 ? t.safe(desc) : '',
-    idMembers: cardMembers,
-    idLabels: cardLabels,
-    due: null
+    members: cardMembers,
+    labels: cardLabels,
+    due: null,
   }
 }

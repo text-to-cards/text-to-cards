@@ -1,10 +1,10 @@
 extends base.pug
 
 block content
-    div(class='container' id='app')
+    div#app.container
         h1 Memo to Trello
-        div(class='panels')
-            div(class='panel')
+        div.panels
+            div.panel
                 h3 Hint
                 p Use these symbols to mark cards and their elements:
                 div
@@ -16,27 +16,28 @@ block content
                     p #[strong @username] or #[strong @initials]
                     p Add a member to the card
                 div
-                    p #[strong #tag]
-                    p Add tag to the card
+                    p #[strong #label]
+                    p Add label to the card
                 div
                     p #[strong $due:]#[em date]
                     p Due date of card (date should be in YYYY-MM-DD format)
 
-            div(class='panel')
+            div.panel
                 div
                     h3 Your memo
-                    textarea(
-                        rows=25
-                        id='memo-text'
+                    textarea#memo-text(
+                        rows=20
                         v-on:input='parseInput'
                         placeholder='Insert your memo here'
                     )
 
-            div(class='panel')
+            div.panel
                 div
                     h3 Preview
                     div(v-if='cards.length === 0') #[small There are no cards in the memo.]
-                    div(v-else) {{cards}}
+                    div(v-else)
+                        div.card-preview
+                            trello-card(v-for='card in cards' v-bind:card='card')
                 div
                     label(for='listSelect') Select list
                     select(name='listSelect' v-model='selectedList')
@@ -48,9 +49,8 @@ block content
                 div
                     div(v-if='message')
                         span(style='margin:auto') {{ message }}
-                    button(
+                    button.mod-primary(
                         v-else
-                        class='mod-primary'
                         v-on:click='createCards'
                         v-bind:disabled='buttonDisabled'
                     ) {{ buttonText }}

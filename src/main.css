@@ -16,3 +16,8 @@
 .authorize-button {
     margin: auto;
 }
+
+.card-preview {
+    background: #ebecf0;
+    padding: 3px;
+}
