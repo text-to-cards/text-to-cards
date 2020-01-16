@@ -7,7 +7,10 @@ let t = window.TrelloPowerUp.iframe({
 
 t.render(function () {
   let args = t.args()
+
   document
-    .getElementById('confirm-box')
-    .innerHTML(`<p>Added <strong>${args.cards.length}</strong> cards to <strong>${args.list}</strong></p>`)
+  .getElementById('confirm-box')
+  .innerHTML(`<p>Added <strong>${args.cards.length}</strong> cards to <strong>${args.list}</strong></p>`)
+
+  t.sizeTo(document.body)
 })
