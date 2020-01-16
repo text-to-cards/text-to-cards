@@ -70,6 +70,7 @@ t.render(function () {
           })
           .then(response => {
             t.closeModal()
+            t.boardBar({ args: { cards: cards, list: that.selectedList.name }})
           })
           .catch(e => console.error(e))
       },

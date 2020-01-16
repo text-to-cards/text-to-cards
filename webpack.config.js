@@ -8,7 +8,8 @@ module.exports = {
   entry: {
     main: './src/index.js',
     modal: './src/modal.js',
-    login: './src/login.js'
+    login: './src/login.js',
+    confirm: './src/confirm.js',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -34,7 +35,7 @@ module.exports = {
       chunks: ['main']
     }),
     new HtmlWebpackPlugin({
-      title: 'Modal',
+      title: 'Add cards',
       template: 'src/modal.pug',
       filename: 'modal.html',
       chunks: ['modal']
@@ -44,6 +45,12 @@ module.exports = {
       template: 'src/login.pug',
       filename: 'login.html',
       chunks: ['login']
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Confirmation',
+      template: 'src/confirm.pug',
+      filename: 'confirm.html',
+      chunks: ['confirm']
     }),
     new CopyPlugin([
       'src/main.css'

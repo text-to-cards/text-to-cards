@@ -8,13 +8,12 @@ t.render(function() {
     t.getRestApi()
       .authorize({ scope: 'read,write' })
       .then(function(token) {
-        t.modal({
+        t.closePopup()
+        return t.modal({
           title: 'Memo-to-Trello',
           fullscreen: true,
           url: './modal.html'
         })
-
-        t.closePopup()
       })
   }, false)
 })
