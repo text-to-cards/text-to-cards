@@ -4,6 +4,7 @@ var t = window.TrelloPowerUp.iframe({
 })
 
 t.render(function() {
+  t.sizeTo(document.body)
   document.querySelector('button').addEventListener('click', function() {
     t.getRestApi()
       .authorize({ scope: 'read,write' })

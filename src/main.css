@@ -16,3 +16,8 @@
 .authorize-button {
     margin: auto;
 }
+
+.confirm-box {
+    margin: auto;
+    padding: 30px 0px 30px 0px;
+}
