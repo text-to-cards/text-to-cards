@@ -4,7 +4,7 @@ let t = window.TrelloPowerUp.iframe({
   appKey: appKey,
   appName: 'Memo-to-Trello',
 })
-
+console.log('Confirmation')
 t.render(function () {
   let cards = t.arg('cards')
   let list = t.arg('list')
@@ -12,4 +12,8 @@ t.render(function () {
   document.getElementById('confirm-box').innerHTML = `<p>Added <strong>${cards.length}</strong> cards to <strong>${list}</strong></p>`
 
   t.sizeTo(document.body)
+
+  setTimeout(function () {
+    t.closePopup()
+  }, 3000)
 })

@@ -69,11 +69,11 @@ t.render(function () {
             }))
           })
           .then(response => {
-            t.closeModal()
-            t.boardBar({
+            t.popup({
               url: './confirm.html',
               args: { cards: cards, list: that.selectedList.name }
             })
+            t.closeModal()
           })
           .catch(e => console.error(e))
       },

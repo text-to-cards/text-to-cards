@@ -20,4 +20,6 @@
 .confirm-box {
     margin: auto;
     padding: 30px 0px 30px 0px;
+    height: 100px;
+    vertical-align: middle;
 }
