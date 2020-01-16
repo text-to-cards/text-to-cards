@@ -3,8 +3,8 @@
         div.labels(v-if='!!card.labels.length' v-for='label in card.labels')
             span.label(v-bind:style='{ background: label.color_hex}') {{ label.name }}
         div.title {{ card.name }}
-        div.members(v-if='!!card.members.length') Members:
-            span(v-for='member in card.members') @{{ member.username }}
+        div.members(v-if='!!card.members.length')
+            img.avatar(width=30 height=30 v-for='member in card.members' v-bind:src='member.avatar')
         div.due {{ card.due }}
 </template>>
 
@@ -44,5 +44,13 @@ export default {
         margin: 0 4px 4px 0;
         color: #fff;
         border-radius: 4px;
+    }
+
+    .avatar {
+        border-radius: 0.25em;
+        width: 28px;
+        height: 28px;
+        float: right;
+        margin: 0 0 4px 4px;
     }
 </style>

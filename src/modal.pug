@@ -33,6 +33,7 @@ block content
 
             div.panel
                 div
+                    span {{ cards }}
                     h3 Preview
                     div(v-if='cards.length === 0') #[small There are no cards in the memo.]
                     div(v-else)

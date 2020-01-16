@@ -65,7 +65,6 @@ let vm = new Vue({
       return t.getRestApi()
         .getToken()
         .then(token => {
-          console.log(cards)
           return Promise.all(cards.map(card => {
             return axios.post('https://api.trello.com/1/cards', {
               name: card.name,
