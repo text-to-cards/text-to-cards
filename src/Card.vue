@@ -1,7 +1,7 @@
 <template lang='pug'>
     div.card-container
-        div.labels(v-if='!!card.labels.length' v-for='label in card.labels')
-            span.label(v-bind:style='{ background: label.color_hex}') {{ label.name }}
+        div(v-if='!!card.labels.length')
+            span.label(v-bind:style='{ background: label.color_hex}' v-for='label in card.labels') {{ label.name }}
         div.title {{ card.name }}
         div.members(v-if='!!card.members.length')
             img.avatar(width=30 height=30 v-for='member in card.members' v-bind:src='member.avatar')
@@ -20,7 +20,7 @@ export default {
         display: block;
         border-radius: 3px;
         background: #fff;
-        padding: 6px 8px 2px 8px;
+        padding: 6px 8px 0px 8px;
         font-family: Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
         font-size: 14px;
         font-weight: 400;
@@ -34,23 +34,36 @@ export default {
         margin: 2px 0px 2px 0px;
     }
 
+    .labels {
+        min-width: 40px;
+    }
+
     .label {
         height: 16px;
         line-height: 16px;
-        padding: 0px 8px;
         max-width: 198px;
         font-size: 12px;
         font-weight: 700;
         margin: 0 4px 4px 0;
+        padding: 0px 8px;
         color: #fff;
         border-radius: 4px;
+        min-width: 40px;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .members {
+        display: inline-block;
+        width: 100%;
     }
 
     .avatar {
-        border-radius: 0.25em;
+        border-radius: 14px;
         width: 28px;
         height: 28px;
         float: right;
         margin: 0 0 4px 4px;
+        display: block;
+        position: relative;
     }
 </style>
