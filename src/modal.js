@@ -61,21 +61,19 @@ let vm = new Vue({
     }, 300),
     createCards: function (e) {
       let self = this
-      let cards = this.cards.map(card => {
-        return {
-          name: card.name,
-          desc: card.desc,
-          idMembers: card.members.map(m => m.id),
-          idLabels: card.labels.map(l => l.id),
-          due: card.due
-        }
-      })
+      let cards = this.cards
       return t.getRestApi()
         .getToken()
         .then(token => {
+          console.log(cards)
           return Promise.all(cards.map(card => {
             return axios.post('https://api.trello.com/1/cards', {
-              ...card,
+              name: card.name,
+              desc: card.desc,
+              idMembers: card.members.map(m => m.id),
+              idLabels: card.labels.map(l => l.id),
+              idList: card.idList,
+              due: card.due,
               token: token,
               key: appKey,
               pos: 'top'
