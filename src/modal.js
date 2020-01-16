@@ -129,11 +129,17 @@ function parseCard(text, members, labels) {
       return l
     })
 
+  let due = null
+  const dueRegex = new RegExp('\\$due:\\s?(\\d{4}-\\d{2}-\\d{2})')
+  if (desc.match(dueRegex)) {
+    due = new Date(desc.match(dueRegex)[1])
+  }
+
   return {
     name: name,
     desc: desc.length > 5 ? t.safe(desc) : '',
     members: cardMembers,
     labels: cardLabels,
-    due: null,
+    due: due,
   }
 }
