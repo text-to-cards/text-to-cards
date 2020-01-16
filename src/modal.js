@@ -118,7 +118,7 @@ function parseCard(text, members, labels) {
 
   return {
     name: name,
-    desc: desc.length > 5 ? desc : '',
+    desc: desc.length > 5 ? t.safe(desc) : '',
     idMembers: cardMembers,
     idLabels: cardLabels,
     due: null
