@@ -9,77 +9,79 @@ let t = window.TrelloPowerUp.iframe({
   appName: 'Memo-to-Trello',
 })
 
-let vm = new Vue({
-  el: '#app',
-  data: {
-    cards: [],
-    board: {},
-    lists: [],
-    selectedList: {},
-  },
-  mounted: function() {
-    return t.board('all')
-      .then(board => {
-        this.board = board
-        return t.lists('id', 'name')
-      })
-      .then(lists => {
-        this.lists = lists
-      })
-      .catch(e => {
-        console.error(e)
-      })
-  },
-  computed: {
-    buttonText: function() {
-      if (this.cards.length === 1) {
-        return 'Create card'
-      } else if (this.cards.length > 1) {
-        return `Create ${this.cards.length} cards`
-      } else {
-        return 'Create cards'
+t.render(function () {
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      cards: [],
+      board: {},
+      lists: [],
+      selectedList: {},
+    },
+    mounted: function() {
+      return t.board('all')
+        .then(board => {
+          this.board = board
+          return t.lists('id', 'name')
+        })
+        .then(lists => {
+          this.lists = lists
+        })
+        .catch(e => {
+          console.error(e)
+        })
+    },
+    computed: {
+      buttonText: function() {
+        if (this.cards.length === 1) {
+          return 'Create card'
+        } else if (this.cards.length > 1) {
+          return `Create ${this.cards.length} cards`
+        } else {
+          return 'Create cards'
+        }
+      },
+      buttonDisabled: function () {
+        return !((this.selectedList.id || false) && !!this.cards.length)
       }
     },
-    buttonDisabled: function () {
-      return !((this.selectedList.id || false) && !!this.cards.length)
-    }
-  },
-  methods: {
-    parseInput: _.debounce(function (e) {
-      this.cards = parseInput(
-        e.target.value,
-        this.board.members,
-        this.board.labels
-      )
-    }, 300),
-    createCards: function (e) {
-      let that = this
-      let cards = this.cards
-      return t.getRestApi()
-        .getToken()
-        .then(token => {
-          return Promise.all(cards.map(card => {
-            return axios.post('https://api.trello.com/1/cards', {
-              ...card,
-              token: token,
-              key: appKey,
-              pos: 'top'
-            })
-          }))
-        })
-        .then(response => {
-          t.closeModal()
-        })
-        .catch(e => console.error(e))
+    methods: {
+      parseInput: _.debounce(function (e) {
+        this.cards = parseInput(
+          e.target.value,
+          this.board.members,
+          this.board.labels
+        )
+      }, 300),
+      createCards: function (e) {
+        let that = this
+        let cards = this.cards
+        return t.getRestApi()
+          .getToken()
+          .then(token => {
+            return Promise.all(cards.map(card => {
+              return axios.post('https://api.trello.com/1/cards', {
+                ...card,
+                token: token,
+                key: appKey,
+                pos: 'top'
+              })
+            }))
+          })
+          .then(response => {
+            t.closeModal()
+          })
+          .catch(e => console.error(e))
+      },
     },
-  },
-  watch: {
-    selectedList: function (newList) {
-      this.cards.forEach(c => {
-        c.idList = newList.id
-      })
+    watch: {
+      selectedList: function (newList) {
+        this.cards.forEach(c => {
+          c.idList = newList.id
+        })
+      }
     }
-  }
+  })
 })
 
 function parseInput(text, members, labels) {
