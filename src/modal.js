@@ -111,15 +111,16 @@ function parseCard(text, members, labels) {
   members = members || []
   labels = labels || []
 
-  let newLineIndex = text.indexOf('\n')
-  let name = newLineIndex === -1 ? text : text.substring(0,newLineIndex).trim()
-  let desc = newLineIndex === -1 ? '' : text.substring(newLineIndex).trim()
+  let newLineIndex = text.match(/:|\n/)? text.match(/:|\n/).index : false
+  console.log(newLineIndex)
+  let name = !newLineIndex ? text : text.substring(0,newLineIndex).trim()
+  let desc = !newLineIndex ? '' : text.substring(newLineIndex + 1).trim()
 
   const memberRegex = new RegExp('@([A-Z]{2}|[a-z0-9_]*)', 'g')
   let memMatch = Array.from(desc.matchAll(memberRegex), m => m[1])
   let cardMembers = members.filter(m => {
       return memMatch.includes(m.username) || memMatch.includes(m.initials)
-    })
+  })
 
   const labelRegex = new RegExp('#(\\w+)', 'g')
   let labelMatch = Array.from(desc.matchAll(labelRegex), m => m[1])
