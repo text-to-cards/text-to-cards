@@ -130,20 +130,20 @@ function parseCard(text, members, labels) {
       return l
     })
 
-  // Escape # characters to avoid markdown parsing
-  labelMatch.forEach(l => {
-    desc = desc.replace('#' + l.name, '\\#' + l.name)
-  })
-
   let due = null
   const dueRegex = new RegExp('\\$due:\\s?(\\d{4}-\\d{2}-\\d{2})')
   if (desc.match(dueRegex)) {
     due = new Date(desc.match(dueRegex)[1])
   }
 
+  // Escape # characters to avoid markdown parsing
+  labelMatch.forEach(l => {
+    desc = desc.replace('#' + l.name, '\\#' + l.name)
+  })
+
   return {
     name: name,
-    desc: desc.length > 5 ? t.safe(desc) : '',
+    desc: desc.length > 5 ? t.safe(desc.trim()) : '',
     members: cardMembers,
     labels: cardLabels,
     due: due,
