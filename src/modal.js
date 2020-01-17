@@ -132,7 +132,7 @@ function parseCard(text, members, labels) {
 
   // Escape # characters to avoid markdown parsing
   labelMatch.forEach(l => {
-    desc = desc.replace('#' + l.name, '\#' + l.name)
+    desc = desc.replace('#' + l.name, '\\#' + l.name)
   })
 
   let due = null
