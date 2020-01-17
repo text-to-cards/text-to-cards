@@ -15,7 +15,7 @@ let colors = window.TrelloPowerUp.util.colors
 let vm = new Vue({
   el: '#app',
   data: {
-    cards: [], // [ { "name": "Card", "desc": "Description\n\n@AS\n\n#Test", "members": [ { "id": "545f927cbd0d2ba758f00a75", "fullName": "András Somi", "username": "andrassomi", "initials": "AS", "avatar": "https://trello-avatars.s3.amazonaws.com/52fdd9274e62c8aa70495b9db116245f/170.png" } , { "id": "545f927cbd0d2ba758f00a75", "fullName": "András Somi", "username": "andrassomi", "initials": "AS", "avatar": "https://trello-avatars.s3.amazonaws.com/52fdd9274e62c8aa70495b9db116245f/170.png" } ], "labels": [ { "id": "5e14aaccaf988c41f232b0aa", "name": "Test", "color": "green", "color_hex": "#61BD4F" },  { "id": "5e14aaccaf988c41f232b0aa", "name": "Testesetsetsdgdaga", "color": "green", "color_hex": "#61BD4F" } ], "due": null } ],
+    cards: [],
     board: {},
     lists: [],
     selectedList: {},
