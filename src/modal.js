@@ -130,6 +130,11 @@ function parseCard(text, members, labels) {
       return l
     })
 
+  // Escape # characters to avoid markdown parsing
+  labelMatch.forEach(l => {
+    desc.replace('#' + l.name, '\#' + l.name)
+  })
+
   let due = null
   const dueRegex = new RegExp('\\$due:\\s?(\\d{4}-\\d{2}-\\d{2})')
   if (desc.match(dueRegex)) {
