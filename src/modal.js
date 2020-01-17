@@ -142,5 +142,6 @@ function parseCard(text, members, labels) {
     members: cardMembers,
     labels: cardLabels,
     due: due,
+    raw: text
   }
 }

@@ -8,7 +8,6 @@ export default {
     mounted() {
         let cardEl = document.createElement('trello-card')
         this.card.url = "https://trello.com/c/preview/no-card"
-        console.log(this.card)
         cardEl.card = this.card
         this.$refs.container.append(cardEl)
     }
