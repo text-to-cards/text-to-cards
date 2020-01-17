@@ -1,5 +1,6 @@
 <template lang='pug'>
-    div.card-container(ref='container')
+    div.desc(v-bind:title='card.desc')
+        div.card-container(ref='container')
 </template>>
 
 <script>
