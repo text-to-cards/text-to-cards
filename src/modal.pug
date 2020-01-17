@@ -6,34 +6,36 @@ block content
         div.panels
             div.panel.hint
                 h3 Hint
-                div
-                    p #[strong ::card title]
-
-                    p Everything in the line after double colon will be the card title. The rest is the description, if longer than 5 characters.
-                div
-                    p #[strong @username] | #[strong @initials]
-                    p Add a member to the card
-                div
-                    p #[strong #label]
-                    p Add label to the card
-                div
-                    p #[strong $due:]#[em YYYY-MM-DD]
-                    p Due date of card
+                p
+                    ol(type='1')
+                        li Copy or type your memo in the box.
+                        li Use the simple markup to convert it to Trello cards.
+                        li Select the list where you want to add the cards.
+                        li Click the button.
+                        li Enjoy!
+                p #[strong Symbols:]
+                p #[code ::card title]: Everything in the first line after the double colon will be the card title. The rest is the description, if longer than 5 characters.
+                p #[code @username] | #[code @initials]: Add a member to the card
+                p #[code #label]: Add label to the card
+                p #[code $due:]#[em YYYY-MM-DD]: Due date of card (first occurence will be used).
+                p
+                    small
+                        em #[strong Note: ] Labels and members should be already on the board.
 
             div.panel
                 div
                     h3 Your memo
                     textarea#memo-text(
-                        rows=20
+                        rows=30
                         v-on:input='parseInput'
                         placeholder='Insert your memo here'
                         ref='text'
                     )
 
             div.panel.preview
-                div
+                div.preview-list
                     h3 Preview
-                    div(v-if='cards.length === 0') #[small There are no cards in the memo.]
+                    div.no-cards(v-if='cards.length === 0') No cards, yet.
                     div(v-else)
                         div.card-preview
                             trello-card(v-for='card in cards' v-bind:card='card')
