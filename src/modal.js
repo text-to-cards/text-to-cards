@@ -81,10 +81,7 @@ let vm = new Vue({
           }))
         })
         .then(response => {
-          self.message = 'Success!'
-          setTimeout(function () {
-            t.closeModal()
-          }, 1000)
+          t.closeModal()
         })
         .catch(e => console.error(e))
     },
