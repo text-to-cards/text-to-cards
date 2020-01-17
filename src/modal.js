@@ -25,6 +25,7 @@ let vm = new Vue({
     'trello-card': Card
   },
   mounted: function() {
+    this.$refs.text.focus()
     return t.board('all')
       .then(board => {
         this.board = board

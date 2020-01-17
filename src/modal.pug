@@ -4,23 +4,21 @@ block content
     div#app.container
         h1 Memo to Trello
         div.panels
-            div.panel
+            div.panel.hint
                 h3 Hint
-                p Use these symbols to mark cards and their elements:
                 div
                     p #[strong ::card title]
 
-                    p Everything in the same line after the double colon will be treated as the card title.
-                    p Anything before a new #[em ::card title] or the end of text will be treated as the description of the card, if longer than 5 characters.
+                    p Everything in the line after double colon will be the card title. The rest is the description, if longer than 5 characters.
                 div
-                    p #[strong @username] or #[strong @initials]
+                    p #[strong @username] | #[strong @initials]
                     p Add a member to the card
                 div
                     p #[strong #label]
                     p Add label to the card
                 div
-                    p #[strong $due:]#[em date]
-                    p Due date of card (date should be in YYYY-MM-DD format)
+                    p #[strong $due:]#[em YYYY-MM-DD]
+                    p Due date of card
 
             div.panel
                 div
@@ -29,9 +27,10 @@ block content
                         rows=20
                         v-on:input='parseInput'
                         placeholder='Insert your memo here'
+                        ref='text'
                     )
 
-            div.panel
+            div.panel.preview
                 div
                     h3 Preview
                     div(v-if='cards.length === 0') #[small There are no cards in the memo.]
