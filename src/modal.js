@@ -5,10 +5,16 @@ import Card from './Card.vue'
 
 const appKey = '14d27ba2a1d4d5160e8eaab9c3cfcf2f'
 
+let now = new Date()
+console.log(`Modal.js - start - ${now}`)
+
 let t = window.TrelloPowerUp.iframe({
   appKey: appKey,
   appName: 'Memo-to-Trello',
 })
+
+now = new Date()
+console.log(`Modal.js - Loaded TrelloPowerup - ${now}`)
 
 let colors = window.TrelloPowerUp.util.colors
 
@@ -25,6 +31,9 @@ let vm = new Vue({
     'trello-card': Card
   },
   mounted: function() {
+    let now = new Date()
+    console.log(`Modal.js - mounted() start - ${now}`)
+
     this.$refs.text.focus()
     return t.board('all')
       .then(board => {
@@ -33,6 +42,8 @@ let vm = new Vue({
       })
       .then(lists => {
         this.lists = lists
+        now = new Date()
+        console.log(`Modal.js - mounted() end - ${now}`)
       })
       .catch(e => {
         console.error(e)

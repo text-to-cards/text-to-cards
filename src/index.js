@@ -8,6 +8,8 @@ var onBtnClick = function (t, opts) {
           url: './login.html'
         })
       } else {
+        let now = new Date()
+        console.log(`Index.js - opening modal - ${now}`)
         return t.modal({
           title: 'Memo-to-Trello',
           fullscreen: true,
