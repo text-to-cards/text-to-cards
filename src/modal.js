@@ -25,7 +25,7 @@ let vm = new Vue({
     board: {},
     lists: [],
     selectedList: {},
-    message: null
+    saving: false
   },
   components: {
     'trello-card': Card
@@ -51,7 +51,9 @@ let vm = new Vue({
   },
   computed: {
     buttonText: function() {
-      if (this.cards.length === 1) {
+      if (this.saving) {
+        return 'Saving cards...'
+      } else if (this.cards.length === 1) {
         return 'Create card'
       } else if (this.cards.length > 1) {
         return `Create ${this.cards.length} cards`
@@ -60,7 +62,11 @@ let vm = new Vue({
       }
     },
     buttonDisabled: function () {
-      return !((this.selectedList.id || false) && !!this.cards.length)
+      return !(
+        (this.selectedList.id || false)   // User selected a list
+        && !!this.cards.length            // There are cards to save
+        && !this.saving                  // No saving is happening
+      )
     }
   },
   methods: {
@@ -74,27 +80,30 @@ let vm = new Vue({
     createCards: function (e) {
       let self = this
       let cards = this.cards
-      return t.getRestApi()
-        .getToken()
-        .then(token => {
-          return Promise.all(cards.map(card => {
-            return axios.post('https://api.trello.com/1/cards', {
-              name: card.name,
-              desc: card.desc,
-              idMembers: card.members.map(m => m.id),
-              idLabels: card.labels.map(l => l.id),
-              idList: card.idList,
-              due: card.due,
-              token: token,
-              key: appKey,
-              pos: 'top'
-            })
-          }))
-        })
-        .then(response => {
-          t.closeModal()
-        })
-        .catch(e => console.error(e))
+      if (!this.saving) {
+        this.saving = true
+        return t.getRestApi()
+          .getToken()
+          .then(token => {
+            return Promise.all(cards.map(card => {
+              return axios.post('https://api.trello.com/1/cards', {
+                name: card.name,
+                desc: card.desc,
+                idMembers: card.members.map(m => m.id),
+                idLabels: card.labels.map(l => l.id),
+                idList: card.idList,
+                due: card.due,
+                token: token,
+                key: appKey,
+                pos: 'top'
+              })
+            }))
+          })
+          .then(response => {
+            t.closeModal()
+          })
+          .catch(e => console.error(e))
+      }
     },
   },
   watch: {
@@ -120,7 +129,6 @@ function parseCard(text, members, labels) {
   labels = labels || []
 
   let newLineIndex = text.match(/:|\n/)? text.match(/:|\n/).index : false
-  console.log(newLineIndex)
   let name = !newLineIndex ? text : text.substring(0,newLineIndex).trim()
   let desc = !newLineIndex ? '' : text.substring(newLineIndex + 1).trim()
 
@@ -150,11 +158,6 @@ function parseCard(text, members, labels) {
   if (desc.match(dueRegex)) {
     due = new Date(desc.match(dueRegex)[1])
   }
-
-  // Escape # characters to avoid markdown parsing
-  labelMatch.forEach(l => {
-    desc = desc.replace('#' + l.name, '\\#' + l.name)
-  })
 
   return {
     name: name,

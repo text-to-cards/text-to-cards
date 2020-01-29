@@ -48,10 +48,7 @@ block content
                     small(v-if='selectedList.name') Cards will be added to the top of #[strong {{ selectedList.name }}].
                     small(v-else) Select the list where you want to add the cards.
                 div
-                    div(v-if='message')
-                        span(style='margin:auto') {{ message }}
                     button.mod-primary(
-                        v-else
                         v-on:click='createCards'
                         v-bind:disabled='buttonDisabled'
                     ) {{ buttonText }}
