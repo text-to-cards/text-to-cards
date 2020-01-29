@@ -40,7 +40,16 @@ let vm = new Vue({
       })
   },
   computed: {
-    buttonText: function() {
+    cardCountText: function () {
+      if (this.cards.length === 1) {
+        return '1 card'
+      } else if (this.cards.length > 1) {
+        return `${this.cards.length} cards`
+      } else {
+        return 'No cards, yet'
+      }
+    },
+    buttonText: function () {
       if (this.saving) {
         return 'Saving cards...'
       } else if (this.cards.length === 1) {
@@ -55,7 +64,7 @@ let vm = new Vue({
       return !(
         (this.selectedList.id || false)   // User selected a list
         && !!this.cards.length            // There are cards to save
-        && !this.saving                  // No saving is happening
+        && !this.saving                   // Currently not saving
       )
     }
   },
@@ -96,7 +105,8 @@ let vm = new Vue({
           .catch(error => {
             self.saving = false
             if (error.response) {
-              self.message = error.response.data
+              let err = error.response.data
+              self.message = `${err.error}: ${err.message}`
             } else {
               self.message = error.message
             }
