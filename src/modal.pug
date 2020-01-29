@@ -20,7 +20,7 @@ block content
                 p #[code $due: YYYY-MM-DD]: Due date of card (first occurence will be used).
                 p
                     small
-                        em #[strong Note: ] Labels and members should be already on the board.
+                        em #[strong Note: ] Labels and members should be already added to the board.
 
             div.panel
                 div
@@ -52,3 +52,8 @@ block content
                         v-on:click='createCards'
                         v-bind:disabled='buttonDisabled'
                     ) {{ buttonText }}
+                div.message(v-if='message')
+                    h5 😱 Something went sideways...
+                    p Sorry to let you down, but this happened:
+                    |
+                    pre.error {{ message }}

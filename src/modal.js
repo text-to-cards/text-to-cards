@@ -5,16 +5,10 @@ import Card from './Card.vue'
 
 const appKey = '14d27ba2a1d4d5160e8eaab9c3cfcf2f'
 
-let now = new Date()
-console.log(`Modal.js - start - ${now}`)
-
 let t = window.TrelloPowerUp.iframe({
   appKey: appKey,
   appName: 'Memo-to-Trello',
 })
-
-now = new Date()
-console.log(`Modal.js - Loaded TrelloPowerup - ${now}`)
 
 let colors = window.TrelloPowerUp.util.colors
 
@@ -25,15 +19,13 @@ let vm = new Vue({
     board: {},
     lists: [],
     selectedList: {},
-    saving: false
+    saving: false,
+    message: null,
   },
   components: {
     'trello-card': Card
   },
   mounted: function() {
-    let now = new Date()
-    console.log(`Modal.js - mounted() start - ${now}`)
-
     this.$refs.text.focus()
     return t.board('all')
       .then(board => {
@@ -42,8 +34,6 @@ let vm = new Vue({
       })
       .then(lists => {
         this.lists = lists
-        now = new Date()
-        console.log(`Modal.js - mounted() end - ${now}`)
       })
       .catch(e => {
         console.error(e)
@@ -82,6 +72,7 @@ let vm = new Vue({
       let cards = this.cards
       if (!this.saving) {
         this.saving = true
+        this.message = null
         return t.getRestApi()
           .getToken()
           .then(token => {
@@ -102,7 +93,14 @@ let vm = new Vue({
           .then(response => {
             t.closeModal()
           })
-          .catch(e => console.error(e))
+          .catch(error => {
+            self.saving = false
+            if (error.response) {
+              self.message = error.response.data
+            } else {
+              self.message = error.message
+            }
+          })
       }
     },
   },
