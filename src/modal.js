@@ -139,6 +139,12 @@ function parseCard(text, members, labels) {
       return l
     })
 
+  if (!!cardLabels.length) {
+    // Escape # characters in labels to avoid parsing as header
+    const replaceRegex = new RegExp(labelMatch.map(l => `#${l}`).join('|'), 'g')
+    desc = desc.replace(replaceRegex, match => `\\${match}`)
+  }
+
   let due = null
   const dueRegex = new RegExp('\\$due:\\s?(\\d{4}-\\d{2}-\\d{2})')
   if (desc.match(dueRegex)) {
