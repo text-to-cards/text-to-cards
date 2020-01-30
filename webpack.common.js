@@ -5,15 +5,10 @@ const CopyPlugin = require('copy-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-  mode: 'development',
   entry: {
     main: './src/index.js',
     modal: './src/modal.js',
     login: './src/login.js',
-  },
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist'
   },
   output: {
     filename: '[name].js',
