@@ -1,5 +1,3 @@
-# Memo-to-Trello
-
 Have you ever had to copy and paste all the todos and notes from a lengthy but otherwise productive meeting into Trello cards? Adding all the labels, assigng members and setting due dates one by one manually? 
 
 I have. And decided not to do that anymore, so I created Memo-to-Trello.
