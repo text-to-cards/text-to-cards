@@ -4,33 +4,42 @@ Have you ever had to copy and paste all the todos and notes from a lengthy but o
 
 I have. And decided not to do that anymore, so I created Memo-to-Trello.
 
+**NOTE: Memo-to-Trello is in development, not released yet.**
+
 ## What is Memo-to-Trello?
 
-Memo-to-Trello is a simple Trello Power-Up, that helps transforming your longform written texts into actionable little Trello cards following your hints and a few clever tricks. 
+Memo-to-Trello is a simple Trello Power-Up, that helps transforming your longform written texts into neat little Trello cards. It will extract card names and descriptions from your text and add the proper labels, members and due date to the card.
 
-It will extract card names, descriptions from your text and adds the proper labels, members and due date to the card. You can create dozens of cards with just one click.
-
-Just as an example, this text will be turned into complete Trello cards with title, description, members and labels added, due date set:
+You can create dozens of cards with just one click. Just as an example, this text will be turned into complete Trello cards:
 
 ```
 
 
 ```
+
+### What's a Trello Power-Up?
+
+Power-Ups are basically external plugins that enhance the funcionality of Trello. [Read more about Power-Ups here](https://help.trello.com/article/1094-what-are-power-ups).
 
 ## How to turn on Memo-to-Trello?
 
-### 1. Open up a board where you want to use Memo-to-Trello
-### 2. Click "Show menu..." in the top right corner
-### 3. Click on the "Power-Ups" item to open up the Power-Up marketplace
-### 4. Search for "Memo-to-Trello" in the top left corner (it's in the "Communication & Collaboration" section by the way).
-### 5. Click on the icon, and "Add" the Power-Up to your board.
-### 6. Authorize Memo-to-Trello
-You should already see a big Memo-to-Trello button in the top menu of your board. Click on it, and authorize the Power-Up so it can create cards on this board on your behalf.
+[Here's how you can turn on a Power-Up on Trello.](https://help.trello.com/article/810-enabling-power-ups).
+
+In a nutshell:
+
+1. Open up a board where you want to use Memo-to-Trello
+2. Click __Show menu...__ in the top right corner
+3. Click on __Power-Ups__ to open up the Power-Up marketplace
+4. Search for __Memo-to-Trello__ in the top left corner (it's in the "Communication & Collaboration" section by the way).
+5. Click on the icon, and __Add__ the Power-Up to your board.
+6. Authorize by clicking on the __Memo-to-Trello__ button in the top menu of your board.
+
+That's it, you can start using Memo-to-Trello.
 
 ## How does it work?
 
 ### 1. Add text
-After opening up the Power-Up, you can copy and paste (or just simply type) your text into the large text area in the middle. 
+After opening up the Power-Up, copy and paste (or just simply type) your text into the large text area in the middle. 
 
 ### 2. Mark the cards
 Sprinkle your text with a few hints to point out the important parts of the cards you want to create. You will immediately see the live preview of the cards you are about to create.
@@ -39,7 +48,7 @@ Sprinkle your text with a few hints to point out the important parts of the card
 Select the list on your board where you want the new cards to be added. You can only add cards to an existing list on the board, so don't forget to create your new list before you add your memo, if necessary.
 
 ### 4. Add the cards
-When you are ready, just click on the "Create cards" button, and your shiny new cards will appear on your board.
+When you are ready, just click on the "Create cards" button and your shiny new cards will appear on your board.
 
 ## Card Hints
 
@@ -109,3 +118,5 @@ The description includes $due: 2020-12-31.
 This will set the due date of the card to December 31, 2020.
 
 ## But what about my precious data?!
+
+## About the creator
