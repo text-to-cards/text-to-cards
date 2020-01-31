@@ -1,9 +1,3 @@
-Have you ever had to copy and paste all the todos and notes from a lengthy but otherwise productive meeting into Trello cards? Adding all the labels, assigng members and setting due dates one by one manually? 
-
-I have. And decided not to do that anymore, so I created Memo-to-Trello.
-
-**NOTE: Memo-to-Trello is in development, not released yet.**
-
 ## What is Memo-to-Trello?
 
 Memo-to-Trello is a simple Trello Power-Up, that helps transforming your longform written texts into neat little Trello cards. It will extract card names and descriptions from your text and add the proper labels, members and due date to the card.
@@ -37,7 +31,7 @@ That's it, you can start using Memo-to-Trello.
 ## How does it work?
 
 ### 1. Add text
-After opening up the Power-Up, copy and paste (or just simply type) your text into the large text area in the middle. 
+After opening up the Power-Up, copy and paste (or just simply type) your text into the large text area in the middle.
 
 ### 2. Mark the cards
 Sprinkle your text with a few hints to point out the important parts of the cards you want to create. You will immediately see the live preview of the cards you are about to create.
