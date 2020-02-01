@@ -1,7 +1,7 @@
 # Memo-to-Trello
 
-## [Introduction](./introduction.md)
+## Content
 
-## [How to use Memo-to-Trello?](./usage.md)
-
-## [About the author](./author.md)
+* [Introduction](./introduction.md)
+* [How to use Memo-to-Trello?](./usage.md)
+* [About the author](./author.md)
