@@ -1,5 +1,7 @@
 # Memo-to-Trello
 
-## Trello Power-Up to turn your texts into series of Trello cards.
+## [Introduction](./introduction.md)
 
-[Check out the docs for more!](/index.md)
+## [How to use Memo-to-Trello?](./usage.md)
+
+## [About the author](./author.md)
