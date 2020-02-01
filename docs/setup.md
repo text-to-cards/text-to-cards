@@ -2,7 +2,7 @@
 
 [Here's how you can turn on a Power-Up on Trello.](https://help.trello.com/article/810-enabling-power-ups).
 
-In a nutshell:
+More specifically:
 
 1. Open up a board where you want to use Memo-to-Trello
 2. Click __Show menu...__ in the top right corner

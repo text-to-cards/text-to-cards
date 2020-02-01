@@ -1,3 +1,4 @@
+## Create cards from text
 
 ### 1. Add text
 
@@ -68,6 +69,8 @@ Add as many labels to the card as you wish by including them - starting with a `
 
 Short description, but #lots #of #valuable #labels
 ```
+
+`#label` will also be replaced with `\#label` to "escape" the `#` sign so that Trello's markdown processor won't turn any labels into H1 headings.
 
 
 #### `$due: YYYY-MM-DD`
