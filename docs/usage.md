@@ -1,29 +1,29 @@
 ## Create cards from text
 
-### 1. Add text
+### Add text
 
 After opening up the Power-Up, copy and paste (or just simply type) your text into the large text area in the middle.
 
-### 2. Mark the cards
+### Mark the cards
 
-Sprinkle your text with a few hints to point out the important parts of the cards you want to create. You will immediately see the live preview of the cards you are about to create.
+Sprinkle in a [few hints](#card-hints) to point out the the cards you want to create (you can of course add these before copying your text). You will immediately see the live preview of the cards you are about to create.
 
-### 3. Select the list
+### Select the list
 
-Select the list on your board where you want the new cards to be added. You can only add cards to an existing list on the board, so don't forget to create your new list before you add your memo, if necessary.
+Select the list on your board where you want to add the cards. You can only add cards to an existing list on the board, so don't forget to create your new list before you add your memo, if necessary.
 
-### 4. Add the cards
+### Add the cards
 
-When you are ready, just click on the "Create cards" button and your shiny new cards will appear on your board.
+When you are ready, just click on the __Create cards__ button and your shiny new cards will appear on your board.
 
 ## Card Hints
 
 Memo-to-Trello uses the following hints to extract different parts of your cards (see details below):
 
-- `::card title` to find cards and separate their title from description
-- `@username` or `@initials` for members
-- `#label` for labels
-- `$due:` for due dates
+- [`::card title`](#card-title) to find cards and separate their title from description
+- [`@username` or `@initials`](#username-or-initials) for members
+- [`#label`](#label) for labels
+- [`$due:`](#usddue-YYYY-MM-DD) for due dates
 
 #### `::card title`
 
@@ -62,7 +62,7 @@ This will add `@myfavouritecolleague` to the card. You can add as many of your b
 
 #### `#label`
 
-Add as many labels to the card as you wish by including them - starting with a `#` - anywhere in the description. (Note: only already existing labels can be added.) Example:
+Add as many labels to the card as you wish by including them - starting with a `#` - anywhere in the description. You can only add labels, that already exist on the table and does not contain spaces. Example:
 
 ```
 ::My card with labels
@@ -70,12 +70,12 @@ Add as many labels to the card as you wish by including them - starting with a `
 Short description, but #lots #of #valuable #labels
 ```
 
-`#label` will also be replaced with `\#label` to "escape" the `#` sign so that Trello's markdown processor won't turn any labels into H1 headings.
+`#label` will also be replaced with `\#label` to "escape" the `#` sign so Trello's markdown processor won't turn any labels into `H1` headings.
 
 
 #### `$due: YYYY-MM-DD`
 
-To set the due date of a card, add the date after `$due:` in the description. Please note, that only the first occurence of `$due` is considered. Example:
+To set the due date of a card, add the date after `$due:` in the description. Please note, that only the first occurence of `$due` is considered, and you have to follow the `YYYY-MM-DD` format. Example:
 
 ```
 ::This is a card with due date

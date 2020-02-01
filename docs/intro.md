@@ -8,11 +8,25 @@ You can create dozens of cards with just one click. Just as an example, this tex
 
 ```
 
+Todo items decided in the meeting:
 
+::Create docs for the power-up
+
+@andrassomi will set up a Gitbook site with a few simple pages
+to document the power-up. $due: 2020-02-10
+
+#Docs #Product
+
+
+::Add board members and available labels to main window
+
+@andrassomi - Board members and labels should appear somewhere on the #UI
+to make text editing easier.
 ```
 
-will be turned into these Trello cards:
+will become these Trello cards:
 
+![Example card preview in Memo-to-Trello](screenshot1.png)
 
 ### What's a Trello Power-Up?
 
@@ -20,4 +34,4 @@ Power-Ups are basically external plugins that enhance the funcionality of Trello
 
 ## Privacy
 
-When you use Memo-to-Trello, all the magic happens right in your browser, as Memo-to-Trello does not rely on any server or external service. This means all your precious data and private information stays with you and Trello.
+When you use Memo-to-Trello, all the magic happens right in your browser. Memo-to-Trello will not rely on any server or external service except for Trello's own REST API, so all your precious data and private information stays with you and Trello.
