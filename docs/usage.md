@@ -1,15 +1,19 @@
 ## How does it work?
 
 ### 1. Add text
+
 After opening up the Power-Up, copy and paste (or just simply type) your text into the large text area in the middle.
 
 ### 2. Mark the cards
+
 Sprinkle your text with a few hints to point out the important parts of the cards you want to create. You will immediately see the live preview of the cards you are about to create.
 
 ### 3. Select the list
+
 Select the list on your board where you want the new cards to be added. You can only add cards to an existing list on the board, so don't forget to create your new list before you add your memo, if necessary.
 
 ### 4. Add the cards
+
 When you are ready, just click on the "Create cards" button and your shiny new cards will appear on your board.
 
 ## Card Hints
