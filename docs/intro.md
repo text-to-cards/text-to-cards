@@ -15,6 +15,8 @@ will be turned into these Trello cards:
 
 
 
+All the magic happens right in your browser, as Memo-to-Trello does not use any server or external process for this. This means all your precious data and private information stays with you and Trello.
+
 ### What's a Trello Power-Up?
 
 Power-Ups are basically external plugins that enhance the funcionality of Trello. [Read more about Power-Ups here](https://help.trello.com/article/1094-what-are-power-ups).

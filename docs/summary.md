@@ -1,12 +1,10 @@
 # Summary
 
-## Introduction
-
 ## How-to
 
-* [How to turn on Memo-to-Trello](./setup.md)
-* [How to use Memo-to-Trello](./usage.md)
+* [Turn on the Power-Up](./setup.md)
+* [Create cards](./usage.md)
 
-## About
+## Contact
 
-* [About the author](./author.md)
+* [Report bugs](./contact.md)

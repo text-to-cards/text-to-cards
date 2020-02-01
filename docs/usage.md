@@ -1,4 +1,3 @@
-## How does it work?
 
 ### 1. Add text
 
@@ -82,5 +81,3 @@ The description includes $due: 2020-12-31.
 ```
 
 This will set the due date of the card to December 31, 2020.
-
-## But what about my precious data?!
