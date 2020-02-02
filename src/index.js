@@ -26,6 +26,10 @@ var onBtnClick = function (t, opts) {
 window.TrelloPowerUp.initialize({
   'board-buttons': function (t, opts) {
     return [{
+      icon:{
+        light: 'https://memo-to-trello.netlify.com/memo_to_trello_light.svg',
+        dark: 'https://memo-to-trello.netlify.com/memo_to_trello_dark.svg'
+      },
       text: 'Memo-to-Trello',
       callback: onBtnClick,
       condition: 'edit'

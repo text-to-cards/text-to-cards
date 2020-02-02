@@ -61,7 +61,9 @@ module.exports = {
       chunks: ['login']
     }),
     new CopyPlugin([
-      'src/main.css'
+      'src/main.css',
+      'src/memo_to_trello_light.svg',
+      'src/memo_to_trello_dark.svg'
     ]),
     new VueLoaderPlugin()
   ],
