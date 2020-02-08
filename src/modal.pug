@@ -2,27 +2,33 @@ extends base.pug
 
 block content
     div#app.container
-        //- h1 Memo to Trello
         div.panels
             div.panel.hint
-                h3 Hint
                 div.hint-text
+                    h3 Cheat sheet
+                    ul
+                        li #[code ::card title]: Beginning of a card.
+                        li #[code @username] or #[code @initials]: Add a member to the card
+                        li #[code #label]: Add label to the card
+                        li #[code $due: YYYY-MM-DD]: Due date of card.
                     p
-                        ol(type='1')
-                            li Copy or type your memo in the box.
-                            li Use the simple markup to convert it to Trello cards.
-                            li Select the list where you want to add the cards.
-                            li Click the button.
-                            li Enjoy!
-                    p #[strong Symbols:]
-                    p #[code ::card title]: Everything in the first line after the double colon will be the card title. The rest is the description, if longer than 5 characters.
-                    p #[code @username] or #[code @initials]: Add a member to the card
-                    p #[code #label]: Add label to the card
-                    p #[code $due: YYYY-MM-DD]: Due date of card (first occurence will be used).
-                    p
-                        small
-                            em #[strong Note: ] Labels and members should be already added to the board.
+                        | For details check out the
+                        |
+                        a(href='https://somiandras.gitbook.io/memo-to-trello' target='blank_') documentation.
 
+                div.members-list
+                    h3 Members on your board
+                    div.list
+                        trello-member(v-for='member in board.members' v-bind:member='member' v-bind:key='member.id')
+                div.labels-list
+                    h3 Labels on your board
+                    div.list
+                        trello-label(
+                            v-for='label in boardLabels'
+                            v-bind:name='label.name'
+                            v-bind:key='label.id'
+                            v-bind:color='label.color'
+                        )
             div.panel
                 h3 Your memo
                 textarea#memo-text(

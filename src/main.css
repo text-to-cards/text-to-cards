@@ -46,19 +46,39 @@
     flex: 0 0 auto;
 }
 
-.hint p, .hint ol, .no-cards {
+.no-cards {
     font-size: 13px;
     color: #5e6c84;
 }
 
-.hint ol {
-    list-style-type: decimal;
+.hint-text {
+    font-size: 12px;
+    overflow: scroll;
+    flex: 0 0 200px;
+}
+
+.hint-text ul {
+    list-style-type: disc;
     padding-left: 2em;
 }
 
-.hint-text {
-    overflow: scroll;
-    flex: 1 1 auto;
+.hint-text p {
+    margin-top: 6px;
+}
+
+.members-list {
+    flex: 1 0 33%;
+}
+
+.labels-list {
+    flex: 1 0 33%;
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 #memo-text {

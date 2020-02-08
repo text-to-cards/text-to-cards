@@ -2,6 +2,8 @@ import Vue from 'vue'
 import _ from 'lodash'
 import axios from 'axios'
 import Card from './Card.vue'
+import Member from './Member.vue'
+import Label from './Label.vue'
 
 const appKey = '14d27ba2a1d4d5160e8eaab9c3cfcf2f'
 
@@ -17,19 +19,29 @@ let vm = new Vue({
   data: {
     cards: [],
     board: {},
+    boardLabels: [],
     lists: [],
     selectedList: {},
     saving: false,
     message: null,
   },
   components: {
-    'trello-card': Card
+    'trello-card': Card,
+    'trello-member': Member,
+    'trello-label': Label
   },
   mounted: function() {
     this.$refs.text.focus()
     return t.board('all')
       .then(board => {
         this.board = board
+        this.boardLabels = this.board.labels.map(label => {
+          return {
+            id: label.id,
+            name: label.name,
+            color: colors.getHexString(label.color)
+          }
+        })
         return t.lists('id', 'name')
       })
       .then(lists => {
@@ -112,7 +124,7 @@ let vm = new Vue({
             }
           })
       }
-    },
+    }
   },
   watch: {
     selectedList: function (newList) {
@@ -148,12 +160,7 @@ function parseCard(text, members, labels) {
 
   const labelRegex = new RegExp('#(\\w+)', 'g')
   let labelMatch = Array.from(desc.matchAll(labelRegex), m => m[1])
-  let cardLabels = labels
-    .filter(l => labelMatch.includes(l.name))
-    .map(l => {
-      l.color_hex = colors.getHexString(l.color)
-      return l
-    })
+  let cardLabels = labels.filter(l => labelMatch.includes(l.name))
 
   if (!!cardLabels.length) {
     // Escape # characters in labels to avoid parsing as header
