@@ -35,13 +35,16 @@ let vm = new Vue({
     return t.board('all')
       .then(board => {
         this.board = board
-        this.boardLabels = this.board.labels.map(label => {
-          return {
-            id: label.id,
-            name: label.name,
-            color: colors.getHexString(label.color)
-          }
-        })
+        this.boardLabels = this.board.labels
+          .filter(label => !!label.name.length)
+          .map(label => {
+            return {
+              id: label.id,
+              name: label.name,
+              color: colors.getHexString(label.color)
+            }
+          })
+
         return t.lists('id', 'name')
       })
       .then(lists => {
