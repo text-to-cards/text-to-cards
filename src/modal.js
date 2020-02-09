@@ -4,6 +4,13 @@ import axios from 'axios'
 import Card from './Card.vue'
 import Member from './Member.vue'
 import Label from './Label.vue'
+import * as Sentry from '@sentry/browser'
+import * as Integrations from '@sentry/integrations'
+
+Sentry.init({
+  dsn: 'https://62073e6e92b444309fe05ea19e14e7a8@sentry.io/2388790',
+  integrations: [new Integrations.Vue({Vue, attachProps: true})],
+})
 
 const appKey = '14d27ba2a1d4d5160e8eaab9c3cfcf2f'
 
@@ -35,6 +42,7 @@ let vm = new Vue({
     return t.board('all')
       .then(board => {
         this.board = board
+        console.log(JSON.stringify(board))
         this.boardLabels = this.board.labels
           .filter(label => !!label.name.length)
           .map(label => {
