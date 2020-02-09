@@ -14,14 +14,14 @@ block content
                     p
                         | For details check out the
                         |
-                        a(href='https://somiandras.gitbook.io/memo-to-trello' target='blank_') documentation.
+                        a(href='https://somiandras.gitbook.io/memo-to-trello/how-to/usage' target='blank_') docs.
 
                 div.members-list
-                    h3 Members on your board
+                    h3 Members on {{ board.name }}
                     div.list
                         trello-member(v-for='member in board.members' v-bind:member='member' v-bind:key='member.id')
                 div.labels-list
-                    h3 Labels on your board
+                    h3 Labels on {{ board.name }}
                     div.list
                         trello-label(
                             v-for='label in boardLabels'
