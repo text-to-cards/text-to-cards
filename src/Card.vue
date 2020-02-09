@@ -7,7 +7,7 @@
 export default {
     props: ['card'],
     mounted() {
-        this.card.url = "https://trello.com/c/preview/no-card"
+        this.card.url = "https://trello.com/c/cardpreview"
         this.card.badges = {
             due: !!this.card.due ? this.card.due.toISOString() : null,
             description: !!this.card.desc.length,
