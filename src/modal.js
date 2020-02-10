@@ -6,6 +6,7 @@ import Member from './Member.vue'
 import Label from './Label.vue'
 import * as Sentry from '@sentry/browser'
 import * as Integrations from '@sentry/integrations'
+import { parseInput } from './parse'
 
 Sentry.init({
   dsn: 'https://62073e6e92b444309fe05ea19e14e7a8@sentry.io/2388790',
@@ -84,7 +85,7 @@ let vm = new Vue({
     },
     buttonEnabled: function () {
       // User selected a list, added cards and we are not currently saving cards
-      return (this.selectedList.id || false) && !!this.cards.length && !this.saving
+      return !!this.selectedList.id && !!this.cards.length && !this.saving
     }
   },
   methods: {
@@ -94,6 +95,10 @@ let vm = new Vue({
         this.board.members,
         this.board.labels
       )
+      this.cards.forEach(c => {
+        c.name = t.safe(c.name)
+        c.desc = t.safe(c.desc)
+      })
     }, 300),
     createCards: function (e) {
       let self = this
@@ -106,8 +111,8 @@ let vm = new Vue({
           .then(token => {
             return Promise.all(cards.map(card => {
               return axios.post('https://api.trello.com/1/cards', {
-                name: card.name,
-                desc: card.desc,
+                name: t.safe(card.name),
+                desc: t.safe(card.desc),
                 idMembers: card.members.map(m => m.id),
                 idLabels: card.labels.map(l => l.id),
                 idList: self.selectedList.id,
@@ -138,52 +143,3 @@ let vm = new Vue({
     }
   }
 })
-
-function parseInput(text, members, labels) {
-  const cardSplitter = /:{2}/gm
-  return text
-    .split(cardSplitter)
-    .slice(1) // first element is empty or non-card related
-    .map((elem, index, array) => parseCard(elem.trim(), members, labels))
-    .filter(c => c.name.length)
-}
-
-function parseCard(text, members, labels) {
-  members = members || []
-  labels = labels || []
-
-  let newLineIndex = text.match(/:|\n/)? text.match(/:|\n/).index : false
-  let name = !newLineIndex ? text : text.substring(0,newLineIndex).trim()
-  let desc = !newLineIndex ? '' : text.substring(newLineIndex + 1).trim()
-
-  const memberRegex = new RegExp('@([A-Z]{2}|[a-z0-9_]*)', 'g')
-  let memMatch = Array.from(desc.matchAll(memberRegex), m => m[1])
-  let cardMembers = members.filter(m => {
-      return memMatch.includes(m.username) || memMatch.includes(m.initials)
-  })
-
-  const labelRegex = new RegExp('#(\\w+)', 'g')
-  let labelMatch = Array.from(desc.matchAll(labelRegex), m => m[1])
-  let cardLabels = labels.filter(l => labelMatch.includes(l.name))
-
-  if (!!cardLabels.length) {
-    // Escape # characters in labels to avoid parsing as header
-    const replaceRegex = new RegExp(labelMatch.map(l => `#${l}`).join('|'), 'g')
-    desc = desc.replace(replaceRegex, match => `\\${match}`)
-  }
-
-  let due = null
-  const dueRegex = new RegExp('\\$due:\\s?(\\d{4}-\\d{2}-\\d{2})')
-  if (desc.match(dueRegex)) {
-    due = new Date(desc.match(dueRegex)[1])
-  }
-
-  return {
-    name: name,
-    desc: desc.length > 5 ? t.safe(desc.trim()) : '',
-    members: cardMembers,
-    labels: cardLabels,
-    due: due,
-    raw: text
-  }
-}
