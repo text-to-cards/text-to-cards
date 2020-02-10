@@ -7,21 +7,21 @@ block content
                 div.hint-text
                     h3 Cheat sheet
                     ul
-                        li #[code ::card title]: Beginning of a card.
-                        li #[code @username] or #[code @initials]: Add a member to the card
-                        li #[code #label]: Add label to the card
-                        li #[code $due: YYYY-MM-DD]: Due date of card.
+                        li #[code ::card title]: Beginning of a card
+                        li #[code @username] or #[code @initials]: Add member
+                        li #[code #label]: Add label
+                        li #[code $due: YYYY-MM-DD]: Due date
                     p
                         | For details check out the
                         |
                         a(href='https://somiandras.gitbook.io/memo-to-trello/how-to/usage' target='blank_') docs.
 
+                h3 Members on {{ board.name }}
                 div.members-list
-                    h3 Members on {{ board.name }}
                     div.list
                         trello-member(v-for='member in board.members' v-bind:member='member' v-bind:key='member.id')
+                h3 Labels on {{ board.name }}
                 div.labels-list
-                    h3 Labels on {{ board.name }}
                     div.list
                         trello-label(
                             v-for='label in boardLabels'

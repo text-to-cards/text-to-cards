@@ -42,7 +42,6 @@ let vm = new Vue({
     return t.board('all')
       .then(board => {
         this.board = board
-        console.log(JSON.stringify(board))
         this.boardLabels = this.board.labels
           .filter(label => !!label.name.length)
           .map(label => {
