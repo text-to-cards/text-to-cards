@@ -113,7 +113,7 @@ let vm = new Vue({
                 desc: card.desc,
                 idMembers: card.members.map(m => m.id),
                 idLabels: card.labels.map(l => l.id),
-                idList: card.idList,
+                idList: self.selectedList.id,
                 due: card.due,
                 token: token,
                 key: appKey,
@@ -138,13 +138,6 @@ let vm = new Vue({
             }
           })
       }
-    }
-  },
-  watch: {
-    selectedList: function (newList) {
-      this.cards.forEach(c => {
-        c.idList = newList.id
-      })
     }
   }
 })

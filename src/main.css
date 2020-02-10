@@ -32,6 +32,7 @@
 
 .panel:nth-child(1) {
     flex: 1 0 300px;
+    justify-content: flex-start;
 }
 
 .panel:nth-child(2) {
@@ -55,7 +56,7 @@
 .hint-text {
     font-size: 12px;
     overflow: scroll;
-    flex: 0 0 auto;
+    flex: 0 1 auto;
 }
 
 .hint-text ul {
@@ -72,13 +73,13 @@
 }
 
 .members-list {
-    flex: 1 0 0;
+    flex: 1 1 auto;
     min-height: 0;
     overflow: scroll;
 }
 
 .labels-list {
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     min-height: 0;
     overflow: scroll;
 }
