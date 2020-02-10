@@ -54,7 +54,7 @@ block content
                     div
                         button.mod-primary(
                             v-on:click='createCards'
-                            v-bind:disabled='!!buttonEnabled'
+                            v-bind:disabled='!buttonEnabled'
                         ) {{ buttonText }}
                 div.message(v-if='message')
                     h5 😱 Oops... Something went sideways
