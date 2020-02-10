@@ -82,12 +82,9 @@ let vm = new Vue({
         return 'Create cards'
       }
     },
-    buttonDisabled: function () {
-      return !(
-        (this.selectedList.id || false)   // User selected a list
-        && !!this.cards.length            // There are cards to save
-        && !this.saving                   // Currently not saving
-      )
+    buttonEnabled: function () {
+      // User selected a list, added cards and we are not currently saving cards
+      return (this.selectedList.id || false) && !!this.cards.length && !this.saving
     }
   },
   methods: {
