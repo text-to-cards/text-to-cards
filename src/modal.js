@@ -128,7 +128,11 @@ let vm = new Vue({
             self.saving = false
             if (error.response) {
               let err = error.response.data
-              self.message = `${err.error}: ${err.message}`
+              if (!!err.error && !!err.message) {
+                self.message = `${err.error}: ${err.message}`
+              } else {
+                self.message = err
+              }
             } else {
               self.message = error.message
             }
