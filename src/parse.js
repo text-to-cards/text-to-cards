@@ -35,8 +35,13 @@ export function parseCardName(text) {
 }
 
 export function parseMembers(desc, members) {
-  const memberRegex = new RegExp('@([A-Z]{2}|[a-z0-9_]*)', 'g')
-  let memMatch = Array.from(desc.matchAll(memberRegex), m => m[1])
+  const memberRegex = new RegExp('(?:^|\\s)@([A-Z]{2}|[a-z0-9_]*)(?:\\s|$)', 'g')
+  let memMatch = Array.from(
+    desc
+      .replace(/\s/g, '  ') // expand whitespaces for proper matching
+      .matchAll(memberRegex),
+    m => m[1]
+  )
   let cardMembers = members.filter(m => {
       return memMatch.includes(m.username) || memMatch.includes(m.initials)
   })
@@ -45,7 +50,7 @@ export function parseMembers(desc, members) {
 }
 
 export function parseLabels(desc, labels) {
-  const labelRegex = new RegExp('#(\\w+)', 'g')
+  const labelRegex = new RegExp('\\s#(\\w+)', 'g')
   let labelMatch = Array.from(desc.matchAll(labelRegex), m => m[1])
   let cardLabels = labels.filter(l => labelMatch.includes(l.name))
 
