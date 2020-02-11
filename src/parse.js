@@ -50,17 +50,26 @@ export function parseMembers(desc, members) {
 }
 
 export function parseLabels(desc, labels) {
-  const labelRegex = new RegExp('\\s#(\\w+)', 'g')
-  let labelMatch = Array.from(desc.matchAll(labelRegex), m => m[1])
+  const labelRegex = new RegExp('(?:^|\\s)#(\\w+)(?:\\s|$)', 'g')
+  let labelMatch = Array.from(
+    desc
+      .replace(/\s/g, '  ') // expand whitespaces for proper matching
+      .matchAll(labelRegex),
+    m => m[1]
+  )
   let cardLabels = labels.filter(l => labelMatch.includes(l.name))
 
   return cardLabels
 }
 
 export function parseDueDate(desc) {
-  const dueRegex = new RegExp('\\$due:\\s?(\\d{4}-\\d{2}-\\d{2})')
+  const dueRegex = new RegExp(
+    '(?:^|\\s)\\$due: ?(\\d{4}-(?:0[1-9]|1[0-2])-\\d{2})(?:\\s|$)'
+  )
+
   if (desc.match(dueRegex)) {
-    return new Date(desc.match(dueRegex)[1])
+    let d = new Date(desc.match(dueRegex)[1])
+    return !isNaN(d) ? d : null
   } else {
     return null
   }
