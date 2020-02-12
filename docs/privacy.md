@@ -10,7 +10,7 @@ We have access to some personal data through Trello which is necessary for the P
 
 In order to able to use Memo-to-Trello you need to authorize the Power-Up on Trello, therefore Memo-to-Trello may access some public user information from Trello, including but not limited to your name and username, your boards and teams.
 
-We only use this information to the extent it is absolutely necessary to perform actions on your behalf in the Power-Up.We never collect or store and never disclose any personal information about you.
+We only use this information to the extent it is absolutely necessary to perform actions on your behalf in the Power-Up. We never collect or store and never disclose any personal information about you.
 
 ## Usage data
 
