@@ -63,7 +63,8 @@ module.exports = {
     new CopyPlugin([
       'src/css/main.css',
       'src/img/memo_to_trello_light.svg',
-      'src/img/memo_to_trello_dark.svg'
+      'src/img/memo_to_trello_dark.svg',
+      'src/img/icon.png',
     ]),
     new VueLoaderPlugin()
   ],
