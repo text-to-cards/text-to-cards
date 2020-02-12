@@ -8,3 +8,4 @@
 ## Contact
 
 * [Report bugs](./contact.md)
+* [Privacy Policy](./privacy.md)
