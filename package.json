@@ -5,7 +5,7 @@
   "description": "",
   "author": "",
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
+    "build": "vue-cli-service test:unit && webpack --config webpack.prod.js",
     "test:unit": "vue-cli-service test:unit",
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "watch": "webpack --watch"
