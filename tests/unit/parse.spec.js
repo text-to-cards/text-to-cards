@@ -2,23 +2,25 @@ import { parseInput, parseCard, parseCardName, parseMembers, parseLabels, parseD
 
 describe('parseInput', () => {
   const testInput = `
-    Some text
-    ::
-    ::Card1:Description2 @username #Label $due: 2020-03-01
-    ::Card2
+Some text
+::
+::Card1:Description2 @username #Label $due: 2020-03-01
+::Card2
 
-    Description
+Description
 
-    with newlines
+with newlines
 
-    @username #Label1 #Label2 $due:2012-12-31
+@username #Label1 #Label2 $due:2020-03-01
 
-    ::Card3::Card4:description$due:2020-01-31  #Label1@username
-  `
+::Card3::Card4:description$due:2020-01-31  #Label1@username
+`
 
   it('creates cards from input text', () => {
     let cards = parseInput(testInput, [], [])
+
     expect(cards.length).toEqual(4)
+
     expect(cards[0]).toEqual({
       name: 'Card1',
       desc: 'Description2 @username #Label $due: 2020-03-01',
@@ -26,6 +28,33 @@ describe('parseInput', () => {
       labels: [],
       due: new Date('2020-03-01'),
       raw: 'Card1:Description2 @username #Label $due: 2020-03-01'
+    })
+
+    expect(cards[1]).toEqual({
+      name: 'Card2',
+      desc: 'Description\n\nwith newlines\n\n@username #Label1 #Label2 $due:2020-03-01',
+      members: [],
+      labels: [],
+      due: new Date('2020-03-01'),
+      raw: 'Card2\n\nDescription\n\nwith newlines\n\n@username #Label1 #Label2 $due:2020-03-01'
+    })
+
+    expect(cards[2]).toEqual({
+      name: 'Card3',
+      desc: '',
+      members: [],
+      labels: [],
+      due: null,
+      raw: 'Card3'
+    })
+
+    expect(cards[3]).toEqual({
+      name: 'Card4',
+      desc: 'description$due:2020-01-31  #Label1@username',
+      members: [],
+      labels: [],
+      due: null,
+      raw: 'Card4:description$due:2020-01-31  #Label1@username'
     })
   })
 })
