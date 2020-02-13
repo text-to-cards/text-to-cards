@@ -1,3 +1,3 @@
 ## Report bugs
 
-Report any issues on [Memo-to-Trello Github repo](https://github.com/memo-to-trello/memo-to-trello/issues).
+Report any issues on [Text to Cards Github repo](https://github.com/text-to-cards/text-to-cards/issues).

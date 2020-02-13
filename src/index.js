@@ -8,12 +8,12 @@ var onBtnClick = function (t, opts) {
     .then(function(isAuth) {
       if (!isAuth) {
         return t.popup({
-          title: 'Authorize Memo-to-Trello?',
+          title: 'Authorize Text to Cards?',
           url: './login.html'
         })
       } else {
         return t.modal({
-          title: 'Memo-to-Trello',
+          title: 'Text to Cards',
           fullscreen: true,
           url: './modal.html'
         })
@@ -31,15 +31,15 @@ window.TrelloPowerUp.initialize({
   'board-buttons': function (t, opts) {
     return [{
       icon:{
-        light: 'https://memo-to-trello.netlify.com/memo_to_trello_light.svg',
-        dark: 'https://memo-to-trello.netlify.com/memo_to_trello_dark.svg'
+        light: 'https://text-to-cards.netlify.com/memo_to_trello_light.svg',
+        dark: 'https://text-to-cards.netlify.com/memo_to_trello_dark.svg'
       },
-      text: 'Memo-to-Trello',
+      text: 'Text to Cards',
       callback: onBtnClick,
       condition: 'edit'
     }]
   }
 }, {
   appKey: '14d27ba2a1d4d5160e8eaab9c3cfcf2f',
-  appName: 'Memo-to-Trello'
+  appName: 'Text to Cards'
 })

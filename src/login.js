@@ -5,7 +5,7 @@ Sentry.init({ dsn: 'https://62073e6e92b444309fe05ea19e14e7a8@sentry.io/2388790' 
 
 var t = window.TrelloPowerUp.iframe({
   appKey: '14d27ba2a1d4d5160e8eaab9c3cfcf2f',
-  appName: 'Memo-to-Trello'
+  appName: 'Text to Cards'
 })
 
 t.render(function() {
@@ -16,7 +16,7 @@ t.render(function() {
       .then(function(token) {
         t.closePopup()
         return t.modal({
-          title: 'Memo-to-Trello',
+          title: 'Text to Cards',
           fullscreen: true,
           url: './modal.html'
         })

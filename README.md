@@ -1,8 +1,8 @@
-# Memo-to-Trello
+# Text to Cards
 
 A Power-Up that automagically turns your meeting memos into proper Trello cards.
 
-See the docs at [https://somiandras.gitbook.io/memo-to-trello](https://somiandras.gitbook.io/memo-to-trello).
+See the docs at [https://somiandras.gitbook.io/text-to-cards](https://somiandras.gitbook.io/text-to-cards).
 
 ![screenshot](docs/screenshot2.png)
 
@@ -10,7 +10,7 @@ See the docs at [https://somiandras.gitbook.io/memo-to-trello](https://somiandra
 
 MIT License
 
-Copyright (c) 2020 memo-to-trello
+Copyright (c) 2020 text-to-cards
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,12 +1,12 @@
-# Memo-to-Trello
+# Text to Cards
 
-## What is Memo-to-Trello?
+## What is Text to Cards
 
-Memo-to-Trello is a simple Power-Up for Trello that helps transforming your longform texts into neat little Trello cards. It will extract card names and descriptions from your text and add the proper labels, members and due date to the card.
+Text to Cards is a simple Power-Up for Trello that helps transforming your longform texts into neat little Trello cards. It will extract card names and descriptions from your text and add the proper labels, members and due date to the card.
 
 You can create dozens of cards with just one click. Just as an example, this text:
 
-```
+```markdown
 
 Todo items decided in the meeting:
 
@@ -26,7 +26,7 @@ to make text editing easier.
 
 will become these Trello cards:
 
-![Example card preview in Memo-to-Trello](screenshot1.png)
+![Example card preview in Text to Cards](screenshot1.png)
 
 ### What's a Trello Power-Up?
 
@@ -34,4 +34,4 @@ Power-Ups are basically external plugins that enhance the funcionality of Trello
 
 ## Privacy Policy
 
-When you use Memo-to-Trello, all the processing happens right in your browser. Memo-to-Trello will not rely on any external service except for Trello's API for publishing your new cards. We do not collect or store any kind of personal or anonymized data. All your precious data and private information stays with you and Trello. [See our privacy policy](https://somiandras.gitbook.io/memo-to-trello/contact/privacy)
+When you use Text to Cards, all the processing happens right in your browser. Text to Cards will not rely on any external service except for Trello's API for publishing your new cards. We do not collect or store any kind of personal or anonymized data. All your precious data and private information stays with you and Trello. [See our privacy policy](https://somiandras.gitbook.io/text-to-cards/contact/privacy)

@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Memo-to-Trello is a free and open-source Power-Up created by Andras Somi. This document sets out the privacy policy commitment in respect of personal information we might hold about you and what we do with that information.
+Text to Cards is a free and open-source Power-Up created by Andras Somi. This document sets out the privacy policy commitment in respect of personal information we might hold about you and what we do with that information.
 
 ## In a nutshell
 
@@ -8,7 +8,7 @@ We have access to some personal data through Trello which is necessary for the P
 
 ## Personal information
 
-In order to able to use Memo-to-Trello you need to authorize the Power-Up on Trello, therefore Memo-to-Trello may access some public user information from Trello, including but not limited to your name and username, your boards and teams.
+In order to able to use Text to Cards you need to authorize the Power-Up on Trello, therefore Text to Cards may access some public user information from Trello, including but not limited to your name and username, your boards and teams.
 
 We only use this information to the extent it is absolutely necessary to perform actions on your behalf in the Power-Up. We never collect or store and never disclose any personal information about you.
 
