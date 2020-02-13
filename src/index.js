@@ -31,8 +31,8 @@ window.TrelloPowerUp.initialize({
   'board-buttons': function (t, opts) {
     return [{
       icon:{
-        light: 'https://text-to-cards.netlify.com/memo_to_trello_light.svg',
-        dark: 'https://text-to-cards.netlify.com/memo_to_trello_dark.svg'
+        light: 'https://text-to-cards.netlify.com/text_to_cards_light.svg',
+        dark: 'https://text-to-cards.netlify.com/text_to_cards_dark.svg'
       },
       text: 'Text to Cards',
       callback: onBtnClick,

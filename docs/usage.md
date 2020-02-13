@@ -10,7 +10,7 @@ Sprinkle in a [few hints](#card-hints) to point out the the cards you want to cr
 
 ### Select the list
 
-Select the list on your board where you want to add the cards. You can only add cards to an existing list on the board, so don't forget to create your new list before you add your memo, if necessary.
+Select the list on your board where you want to add the cards. You can only add cards to an existing list on the board, so don't forget to create your new list before you add your cards, if necessary.
 
 ### Add the cards
 

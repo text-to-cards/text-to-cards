@@ -44,7 +44,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Memo-To-Trello',
+      title: 'Text to Cards',
       template: 'src/templates/index.pug',
       chunks: ['main']
     }),
@@ -55,15 +55,15 @@ module.exports = {
       chunks: ['modal']
     }),
     new HtmlWebpackPlugin({
-      title: 'Authorize Memo-to-Trello',
+      title: 'Authorize Text to Cards',
       template: 'src/templates/login.pug',
       filename: 'login.html',
       chunks: ['login']
     }),
     new CopyPlugin([
       'src/css/main.css',
-      'src/img/memo_to_trello_light.svg',
-      'src/img/memo_to_trello_dark.svg',
+      'src/img/text_to_cards_light.svg',
+      'src/img/text_to_cards_dark.svg',
       'src/img/icon.png',
     ]),
     new VueLoaderPlugin()
