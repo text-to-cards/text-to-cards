@@ -18,7 +18,7 @@ When you are ready, just click on the __Create cards__ button and your shiny new
 
 ## Card Hints
 
-Memo-to-Trello uses the following hints to extract different parts of your cards (see details below):
+Text to Cards uses the following hints to extract different parts of your cards (see details below):
 
 - [`::card title`](#card-title) to find cards and separate their title from description
 - [`@username` or `@initials`](#username-or-initials) for members

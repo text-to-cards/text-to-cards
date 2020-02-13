@@ -17,7 +17,7 @@ const appKey = '14d27ba2a1d4d5160e8eaab9c3cfcf2f'
 
 let t = window.TrelloPowerUp.iframe({
   appKey: appKey,
-  appName: 'Memo-to-Trello',
+  appName: 'Text to Cards',
 })
 
 let colors = window.TrelloPowerUp.util.colors
