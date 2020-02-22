@@ -65,6 +65,7 @@ module.exports = {
       'src/img/text_to_cards_light.svg',
       'src/img/text_to_cards_dark.svg',
       'src/img/icon.png',
+      'src/img/screenshot2.png',
     ]),
     new VueLoaderPlugin()
   ],
