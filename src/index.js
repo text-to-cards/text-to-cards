@@ -1,6 +1,9 @@
 import * as Sentry from '@sentry/browser'
 
-Sentry.init({ dsn: 'https://62073e6e92b444309fe05ea19e14e7a8@sentry.io/2388790' })
+Sentry.init({
+  dsn: 'https://62073e6e92b444309fe05ea19e14e7a8@sentry.io/2388790',
+  environment: process.env.NODE_ENV
+})
 
 var onBtnClick = function (t, opts) {
   return t.getRestApi()
