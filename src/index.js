@@ -22,7 +22,7 @@ var onBtnClick = function (t, opts) {
         })
       }
     })
-    .catch(TrelloPowerUp.restApiError.AuthDeniedError, e => {
+    .catch(window.TrelloPowerUp.restApiError.AuthDeniedError, e => {
       console.log('Authorization cancelled')
     })
     .catch(e => {
