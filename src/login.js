@@ -24,5 +24,8 @@ t.render(function() {
           url: './modal.html'
         })
       })
+      .catch(TrelloPowerUp.restApiError.AuthDeniedError, function() {
+        t.closePopup()
+      })
   }, false)
 })
