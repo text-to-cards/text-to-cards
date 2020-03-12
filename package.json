@@ -13,9 +13,11 @@
   "dependencies": {
     "@sentry/browser": "^5.12.1",
     "@sentry/integrations": "^5.12.0",
+    "@typeform/embed": "^0.16.0",
     "axios": "^0.19.1",
     "lodash": "^4.17.15",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-cookies": "^1.7.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-unit-jest": "^4.2.2",

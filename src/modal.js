@@ -7,6 +7,10 @@ import Label from './components/Label.vue'
 import * as Sentry from '@sentry/browser'
 import * as Integrations from '@sentry/integrations'
 import { parseInput } from './parse'
+import * as typeformEmbed from '@typeform/embed'
+import VueCookies from 'vue-cookies'
+
+Vue.use(VueCookies)
 
 Sentry.init({
   dsn: 'https://62073e6e92b444309fe05ea19e14e7a8@sentry.io/2388790',
@@ -33,6 +37,7 @@ let vm = new Vue({
     selectedList: {},
     saving: false,
     message: null,
+    showBanner: true,
   },
   components: {
     'trello-card': Card,
@@ -41,6 +46,8 @@ let vm = new Vue({
   },
   mounted: function() {
     this.$refs.text.focus()
+    this.$cookies.config('365d')
+    this.showBanner = !this.$cookies.get('T2CSurvey')
     return t.board('all')
       .then(board => {
         this.board = board
@@ -90,6 +97,28 @@ let vm = new Vue({
     }
   },
   methods: {
+    hideBanner: function(e) {
+      if (e) {
+        e.preventDefault()
+      }
+      this.$cookies.set('T2CSurvey', 0)
+      this.showBanner = false
+    },
+    closeSurvey: function () {
+      setTimeout(this.surveyPopup.close, 3000)
+      this.hideBanner()
+    },
+    startSurvey: function(e) {
+      e.preventDefault()
+      this.surveyPopup = typeformEmbed.makePopup(
+        'https://andrassomi.typeform.com/to/X586qQ',
+        {
+          mode: 'popup',
+          onSubmit: this.closeSurvey,
+        }
+      )
+      this.surveyPopup.open()
+    },
     parseInput: _.debounce(function (e) {
       this.cards = parseInput(
         e.target.value,

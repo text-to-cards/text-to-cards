@@ -13,14 +13,22 @@
 
 /* Modal */
 
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
 .panels {
-    margin: 30px;
-    height: 90vh;
+    margin: 0px 30px 30px 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: nowrap;
     align-items: stretch;
+    flex: 1 0 auto;
 }
 
 .panel {
@@ -121,6 +129,45 @@
 
 .error {
     color: red;
+}
+
+.banner {
+    background: #0079BF;
+    color: white;
+    flex: 0 0 auto;
+    padding: 5px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.banner-hidden {
+    display: none;
+}
+
+.banner a {
+    color: white;
+    text-decoration: underline;
+}
+
+.banner a:hover {
+    color: white;
+    opacity: 0.5;
+    text-decoration: underline;
+}
+
+.banner .close-button, .banner .close-button:hover  {
+    text-decoration: none;
+}
+
+.banner-text {
+    flex: 1 0 auto;
+    text-align: center;
+}
+
+.banner-close {
+    flex: 0 0 auto;
+    padding-right: 10px;
 }
 
 @media (max-width: 1070px) {
