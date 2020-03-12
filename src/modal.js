@@ -104,17 +104,20 @@ let vm = new Vue({
       this.$cookies.set('T2CSurvey', 0)
       this.showBanner = false
     },
+    closeSurvey: function () {
+      setTimeout(this.surveyPopup.close, 3000)
+      this.hideBanner()
+    },
     startSurvey: function(e) {
       e.preventDefault()
-      const popup = typeformEmbed.makePopup(
+      this.surveyPopup = typeformEmbed.makePopup(
         'https://andrassomi.typeform.com/to/X586qQ',
         {
           mode: 'popup',
-          onSubmit: this.hideBanner,
-          autoclose: 1
+          onSubmit: this.closeSurvey,
         }
       )
-      popup.open()
+      this.surveyPopup.open()
     },
     parseInput: _.debounce(function (e) {
       this.cards = parseInput(
