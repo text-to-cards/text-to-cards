@@ -7,6 +7,7 @@ import Label from './components/Label.vue'
 import * as Sentry from '@sentry/browser'
 import * as Integrations from '@sentry/integrations'
 import { parseInput } from './parse'
+import * as typeformEmbed from '@typeform/embed'
 
 Sentry.init({
   dsn: 'https://62073e6e92b444309fe05ea19e14e7a8@sentry.io/2388790',
@@ -33,6 +34,7 @@ let vm = new Vue({
     selectedList: {},
     saving: false,
     message: null,
+    isBannerHidden: false,
   },
   components: {
     'trello-card': Card,
@@ -90,6 +92,24 @@ let vm = new Vue({
     }
   },
   methods: {
+    hideBanner: function(e) {
+      if (e) {
+        e.preventDefault()
+      }
+      this.isBannerHidden = true
+    },
+    startSurvey: function(e) {
+      e.preventDefault()
+      const popup = typeformEmbed.makePopup(
+        'https://andrassomi.typeform.com/to/X586qQ',
+        {
+          mode: 'popup',
+          onSubmit: this.hideBanner,
+          autoclose: 1
+        }
+      )
+      popup.open()
+    },
     parseInput: _.debounce(function (e) {
       this.cards = parseInput(
         e.target.value,
