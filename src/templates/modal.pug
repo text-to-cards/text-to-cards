@@ -2,7 +2,7 @@ extends base.pug
 
 block content
     div#app.container
-        div.banner(v-bind:class="{ 'banner-hidden': isBannerHidden }")
+        div.banner(v-bind:class="{ 'banner-hidden': !showBanner }")
             div.banner-text
                 | Hey! Wanna help and improve Text to Cards? 🤗 Tell us how you use it!
                 |
