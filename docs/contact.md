@@ -1,3 +1,3 @@
-## Report bugs
+## Get in touch
 
-Report any issues on [Text to Cards Github repo](https://github.com/text-to-cards/text-to-cards/issues).
+Have any suggestions? Wanna chat? Then DM me on Twitter: [@somiandras](https://twitter.com/somiandras)

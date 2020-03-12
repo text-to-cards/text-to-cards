@@ -7,5 +7,6 @@
 
 ## Contact
 
-* [Report bugs](./contact.md)
+* [Get in touch](./contact.md)
+* [Report bugs](./bugs.md)
 * [Privacy Policy](./privacy.md)
