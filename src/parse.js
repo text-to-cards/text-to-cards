@@ -50,12 +50,15 @@ export function parseMembers(desc, members) {
 }
 
 export function parseLabels(desc, labels) {
-  const labelRegex = new RegExp('(?:^|\\s)#(\\w+)(?:\\s|$)', 'g')
+  const labelRegex = new RegExp('(?:^|\\s)(?:#(\\w+)|#{([^{}]+)})(?:\\s|$)', 'g')
   let labelMatch = Array.from(
     desc
-      .replace(/\s/g, '  ') // expand whitespaces for proper matching
+      .replace(/\s/g, '  ') // expand whitespaces so each label has one whitespace to "claim"
       .matchAll(labelRegex),
-    m => m[1]
+    m => {
+      let match = m[2] || m[1]
+      return match.replace(/  /g, ' ') // reverse whitespace expansion within label
+    }
   )
   let cardLabels = labels.filter(l => labelMatch.includes(l.name))
 
