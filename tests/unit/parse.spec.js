@@ -1,4 +1,4 @@
-import { parseInput, parseCard, parseCardName, parseMembers, parseLabels, parseDueDate } from '../../src/parse'
+import { parseInput, parseCard, parseCardName, parseMembers, parseLabels, parseDueDate, escapeLabels } from '../../src/parse'
 
 describe('parseInput', () => {
   const testInput = `
@@ -215,6 +215,35 @@ describe('parseDueDate', () => {
     (input) => {
       let due = parseDueDate(input)
       expect(due).toEqual(null)
+    }
+  )
+})
+
+describe('escapeLabels', () => {
+  const boardLabels = [
+    { name: 'Label1', id: 1 },
+    { name: 'Label2', id: 2 },
+    { name: 'Label1.1', id: 3 },
+    { name: 'Label#1', id: 4 },
+    { name: 'Label with whitespaces', id: 4 },
+  ]
+
+  const descriptions = [
+    ['#Label1', '\\#Label1'],
+    [' #Label1 ', '\\#Label1'],
+    ['#{Label with whitespaces}', '\\#{Label with whitespaces}'],
+    ['#{Label#1}', '\\#{Label#1}'],
+    ['\n#{Label#1}', '\\#{Label#1}'],
+    ['#Label1 #Label2', '\\#Label1 #Label2'],
+    ['Text #Label1', 'Text #Label1'],
+    ['Text\n#Label1', 'Text\n\\#Label1']
+  ]
+
+  it.each(descriptions)(
+    'should escape # in %p',
+    (input, expected) => {
+      let escaped = escapeLabels(input, boardLabels)
+      expect(escaped).toEqual(expected)
     }
   )
 })
