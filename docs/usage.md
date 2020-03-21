@@ -22,7 +22,7 @@ Text to Cards uses the following hints to extract different parts of your cards 
 
 - [`::card title`](#card-title) to find cards and separate their title from description
 - [`@username` or `@initials`](#username-or-initials) for members
-- [`#label`](#label) for labels
+- [`#label` or #{label with space or special char}](#label) for labels
 - [`$due:`](#usddue-YYYY-MM-DD) for due dates
 
 #### `::card title`
@@ -60,14 +60,16 @@ This card is assigned to: @myfavouritecolleague
 
 This will add `@myfavouritecolleague` to the card. You can add as many of your board members as you want.
 
-#### `#label`
+#### `#label` or `#{label with spaces or special characters}`
 
-Add as many labels to the card as you wish by including them - starting with a `#` - anywhere in the description. You can only add labels, that already exist on the table and does not contain spaces. Example:
+Add as many labels to the card as you wish by including them - starting with a `#` - anywhere in the description. If your label contains whitespaces and/or special characters (anything besides letters and numbers), put it in curly braces, like `#{label with whitespaces}`. You can only add labels that already exist on the table.
+
+Example:
 
 ```
 ::My card with labels
 
-Short description, but #lots #of #valuable #labels
+Short description, but #lots #of #valuable #labels #{with whitespaces} and #{special.characters!}
 ```
 
 `#label` will also be replaced with `\#label` to "escape" the `#` sign so Trello's markdown processor won't turn any labels into `H1` headings.

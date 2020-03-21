@@ -1,5 +1,9 @@
 # Summary
 
+## What's new?
+
+* [What's new?](./changelog.md)
+
 ## How-to
 
 * [Turn on the Power-Up](./setup.md)
@@ -7,6 +11,10 @@
 
 ## Contact
 
+* [Give feedback](./request.md)
+* [Report an issue](./bugs.md)
 * [Get in touch](./contact.md)
-* [Report bugs](./bugs.md)
+
+## Privacy
+
 * [Privacy Policy](./privacy.md)

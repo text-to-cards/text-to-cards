@@ -25,7 +25,16 @@ let t = window.TrelloPowerUp.iframe({
   appName: 'Text to Cards',
 })
 
-let colors = window.TrelloPowerUp.util.colors
+function get_color(color) {
+  let colors = window.TrelloPowerUp.util.colors
+  if (color === 'black') {
+    return '#344563'
+  } else if (color === null) {
+    return '#b3bac5'
+  } else {
+    return colors.getHexString(color)
+  }
+}
 
 let vm = new Vue({
   el: '#app',
@@ -38,6 +47,7 @@ let vm = new Vue({
     saving: false,
     message: null,
     showBanner: true,
+    currentBannerId: 'T2CWhatsNew'
   },
   components: {
     'trello-card': Card,
@@ -46,8 +56,8 @@ let vm = new Vue({
   },
   mounted: function() {
     this.$refs.text.focus()
-    this.$cookies.config('365d')
-    this.showBanner = !this.$cookies.get('T2CSurvey')
+    this.$cookies.config('30d')
+    this.showBanner = !this.$cookies.get(this.currentBannerId)
     return t.board('all')
       .then(board => {
         this.board = board
@@ -57,7 +67,7 @@ let vm = new Vue({
             return {
               id: label.id,
               name: label.name,
-              color: colors.getHexString(label.color)
+              color: get_color(label.color)
             }
           })
 
@@ -68,6 +78,7 @@ let vm = new Vue({
       })
       .catch(e => {
         console.error(e)
+        Sentry.captureException(e)
       })
   },
   computed: {
@@ -101,20 +112,19 @@ let vm = new Vue({
       if (e) {
         e.preventDefault()
       }
-      this.$cookies.set('T2CSurvey', 0)
+      this.$cookies.set(this.currentBannerId, 0)
       this.showBanner = false
     },
-    closeSurvey: function () {
-      setTimeout(this.surveyPopup.close, 3000)
-      this.hideBanner()
+    closeSurveyPopup: function () {
+      setTimeout(this.surveyPopup.close, 1000)
     },
-    startSurvey: function(e) {
+    showSurveyPopup: function(e) {
       e.preventDefault()
       this.surveyPopup = typeformEmbed.makePopup(
-        'https://andrassomi.typeform.com/to/X586qQ',
+        e.target.href,
         {
           mode: 'popup',
-          onSubmit: this.closeSurvey,
+          onSubmit: this.closeSurveyPopup,
         }
       )
       this.surveyPopup.open()
@@ -168,6 +178,7 @@ let vm = new Vue({
             } else {
               self.message = error.message
             }
+            Sentry.captureException(error)
           })
       }
     }

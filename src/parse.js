@@ -50,12 +50,15 @@ export function parseMembers(desc, members) {
 }
 
 export function parseLabels(desc, labels) {
-  const labelRegex = new RegExp('(?:^|\\s)#(\\w+)(?:\\s|$)', 'g')
+  const labelRegex = new RegExp('(?:^|\\s)(?:#(\\w+)|#{([^{}]+)})(?:\\s|$)', 'g')
   let labelMatch = Array.from(
     desc
-      .replace(/\s/g, '  ') // expand whitespaces for proper matching
+      .replace(/\s/g, '  ') // expand whitespaces to make regex work for each label
       .matchAll(labelRegex),
-    m => m[1]
+    m => {
+      let match = m[2] || m[1]
+      return match.replace(/  /g, ' ') // reverse whitespace expansion within label
+    }
   )
   let cardLabels = labels.filter(l => labelMatch.includes(l.name))
 
@@ -78,9 +81,14 @@ export function parseDueDate(desc) {
 export function escapeLabels(desc, cardLabels) {
   // Escape # characters in labels to avoid parsing as header
   if (!!cardLabels.length) {
-    const regex = new RegExp(cardLabels.map(l => `#${l.name}`).join('|'), 'g')
-    desc = desc.replace(regex, match => `\\${match}`)
+    const regex = new RegExp(
+      cardLabels
+        .map(l => `^#${l.name}|#{${l.name}}`)
+        .join('|'),
+      'gm'
+    )
+    desc = desc.trim().replace(regex, match => `\\${match}`)
   }
 
-  return desc.trim()
+  return desc
 }
