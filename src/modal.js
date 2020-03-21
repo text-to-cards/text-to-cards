@@ -47,6 +47,7 @@ let vm = new Vue({
     saving: false,
     message: null,
     showBanner: true,
+    currentBannerId: 'T2CWhatsNew'
   },
   components: {
     'trello-card': Card,
@@ -55,8 +56,8 @@ let vm = new Vue({
   },
   mounted: function() {
     this.$refs.text.focus()
-    this.$cookies.config('365d')
-    this.showBanner = !this.$cookies.get('T2CSurvey')
+    this.$cookies.config('30d')
+    this.showBanner = !this.$cookies.get(this.currentBannerId)
     return t.board('all')
       .then(board => {
         this.board = board
@@ -111,7 +112,7 @@ let vm = new Vue({
       if (e) {
         e.preventDefault()
       }
-      this.$cookies.set('T2CSurvey', 0)
+      this.$cookies.set(this.currentBannerId, 0)
       this.showBanner = false
     },
     closeSurvey: function () {

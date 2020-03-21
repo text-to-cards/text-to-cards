@@ -2,11 +2,14 @@ extends base.pug
 
 block content
     div#app.container
-        div.banner(v-bind:class="{ 'banner-hidden': !showBanner }")
+        div.banner(v-if='showBanner')
             div.banner-text
-                | Hey! Wanna help and improve Text to Cards? 🤗 Tell us how you use it!
+                | 🎉 Text to Cards is updated.
                 |
-                a(href='#' v-on:click='startSurvey') Click here!
+                a(href='https://somiandras.gitbook.io/text-to-cards/v/dev/whats-new/changelog' target='_blank') Check out what's new!
+                |
+                |
+                | 🎉
             div.banner-close
                 a.close-button(href='#' v-on:click='hideBanner') ✕
 
