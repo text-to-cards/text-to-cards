@@ -178,6 +178,7 @@ let vm = new Vue({
             } else {
               self.message = error.message
             }
+            Sentry.captureException(error)
           })
       }
     }
