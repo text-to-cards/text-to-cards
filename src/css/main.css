@@ -92,6 +92,12 @@
     overflow: scroll;
 }
 
+.info {
+    flex: 0 0 auto;
+    min-height: 0;
+    font-size: 12px;
+}
+
 .list {
     display: flex;
     flex-direction: row;

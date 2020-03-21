@@ -22,10 +22,6 @@ block content
                         li #[code @username] or #[code @initials]: Add member
                         li #[code #label] or #[code \#{label with spaces}]: Add label
                         li #[code $due: YYYY-MM-DD]: Due date
-                    p
-                        | For details check out the
-                        |
-                        a(href='https://somiandras.gitbook.io/text-to-cards/how-to/usage' target='blank_') docs.
 
                 h3 Members on {{ board.name }}
                 div.members-list
@@ -40,6 +36,20 @@ block content
                             v-bind:key='label.id'
                             v-bind:color='label.color'
                         )
+                div.info
+                    p
+                        | Check out the
+                        |
+                        a(href='https://somiandras.gitbook.io/text-to-cards/how-to/usage' target='blank_') docs.
+                        |
+                        | Submit your
+                        |
+                        a(v-on:click='showSurveyPopup' href='https://andrassomi.typeform.com/to/rERkJr') feature idea
+                        |
+                        | or report issues
+                        |
+                        a(v-on:click='showSurveyPopup' href='https://andrassomi.typeform.com/to/hHNZMk') here.
+
             div.panel
                 h3 Your text
                 textarea#memo-text(

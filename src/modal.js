@@ -115,17 +115,16 @@ let vm = new Vue({
       this.$cookies.set(this.currentBannerId, 0)
       this.showBanner = false
     },
-    closeSurvey: function () {
-      setTimeout(this.surveyPopup.close, 3000)
-      this.hideBanner()
+    closeSurveyPopup: function () {
+      setTimeout(this.surveyPopup.close, 1000)
     },
-    startSurvey: function(e) {
+    showSurveyPopup: function(e) {
       e.preventDefault()
       this.surveyPopup = typeformEmbed.makePopup(
-        'https://andrassomi.typeform.com/to/X586qQ',
+        e.target.href,
         {
           mode: 'popup',
-          onSubmit: this.closeSurvey,
+          onSubmit: this.closeSurveyPopup,
         }
       )
       this.surveyPopup.open()
