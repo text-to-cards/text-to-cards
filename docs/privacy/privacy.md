@@ -19,3 +19,4 @@ We do not track users and do not collect usage data in any form.
 ## Change in our privacy policy
 
 We do not plan to move away from the general principle of not collecting and storing any data. Nevertheless we may change this privacy policy from time to time or as the need arises.
+
