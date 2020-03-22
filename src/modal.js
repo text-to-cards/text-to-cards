@@ -25,7 +25,7 @@ let t = window.TrelloPowerUp.iframe({
   appName: 'Text to Cards',
 })
 
-function get_color(color) {
+function getColorHex(color) {
   let colors = window.TrelloPowerUp.util.colors
   if (color === 'black') {
     return '#344563'
@@ -67,7 +67,7 @@ let vm = new Vue({
             return {
               id: label.id,
               name: label.name,
-              color: get_color(label.color)
+              color: getColorHex(label.color)
             }
           })
 
