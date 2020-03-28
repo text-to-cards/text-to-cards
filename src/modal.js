@@ -27,10 +27,8 @@ let t = window.TrelloPowerUp.iframe({
 
 function getColorHex(color) {
   let colors = window.TrelloPowerUp.util.colors
-  if (color === 'black') {
-    return '#344563'
-  } else if (color === null) {
-    return '#b3bac5'
+  if (color === null) {
+    return colors.getHexString('shades', 60)
   } else {
     return colors.getHexString(color)
   }
