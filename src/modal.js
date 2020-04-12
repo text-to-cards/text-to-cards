@@ -14,7 +14,7 @@ Vue.use(VueCookies)
 
 Sentry.init({
   dsn: 'https://62073e6e92b444309fe05ea19e14e7a8@sentry.io/2388790',
-  integrations: [new Integrations.Vue({Vue, attachProps: true})],
+  integrations: [new Integrations.Vue({ Vue, attachProps: true })],
   environment: process.env.NODE_ENV,
 })
 
@@ -52,7 +52,7 @@ let vm = new Vue({
     'trello-member': Member,
     'trello-label': Label
   },
-  mounted: function() {
+  mounted: function () {
     this.$refs.text.focus()
     this.$cookies.config('30d')
     this.showBanner = !this.$cookies.get(this.currentBannerId)
@@ -106,7 +106,7 @@ let vm = new Vue({
     }
   },
   methods: {
-    hideBanner: function(e) {
+    hideBanner: function (e) {
       if (e) {
         e.preventDefault()
       }
@@ -116,7 +116,7 @@ let vm = new Vue({
     closeSurveyPopup: function () {
       setTimeout(this.surveyPopup.close, 1000)
     },
-    showSurveyPopup: function(e) {
+    showSurveyPopup: function (e) {
       e.preventDefault()
       this.surveyPopup = typeformEmbed.makePopup(
         e.target.href,
@@ -133,7 +133,7 @@ let vm = new Vue({
         this.board.members,
         this.board.labels
       )
-      this.cards.forEach(c => {
+      this.cards.forEach(c => {
         c.name = t.safe(c.name)
         c.desc = t.safe(c.desc)
       })
@@ -147,19 +147,7 @@ let vm = new Vue({
         return t.getRestApi()
           .getToken()
           .then(token => {
-            return Promise.all(cards.map(card => {
-              return axios.post('https://api.trello.com/1/cards', {
-                name: t.safe(card.name),
-                desc: t.safe(card.desc),
-                idMembers: card.members.map(m => m.id),
-                idLabels: card.labels.map(l => l.id),
-                idList: self.selectedList.id,
-                due: card.due,
-                token: token,
-                key: appKey,
-                pos: 'top'
-              })
-            }))
+            return postCards(cards, token, self.selectedList)
           })
           .then(response => {
             t.closeModal()
@@ -182,3 +170,19 @@ let vm = new Vue({
     }
   }
 })
+
+function postCards(cards, token, selectedList) {
+  return Promise.all(cards.map(card => {
+    return axios.post('https://api.trello.com/1/cards', {
+      name: t.safe(card.name),
+      desc: t.safe(card.desc),
+      idMembers: card.members.map(m => m.id),
+      idLabels: card.labels.map(l => l.id),
+      idList: selectedList.id,
+      due: card.due,
+      token: token,
+      key: appKey,
+      pos: 'top'
+    })
+  }))
+}
