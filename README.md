@@ -1,3 +1,5 @@
+__This project is not maintained anymore.__
+
 # Text to Cards
 
 A Power-Up that automagically turns your meeting memos into proper Trello cards.
